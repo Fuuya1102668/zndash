@@ -30,25 +30,38 @@ body {
   font-size: 1.5rem;
 }
 
-/* 特定のセクションにスタイルを適用 */
 .time {
   height: 15%;
-  background-color: #d9f7be; /* 時刻セクションの背景色 */
+  background-color: #d9f7be;
 }
 
 .weather {
-  display: flex;
-  flex-direction: row;
   height: 20%;
-  background-color: #ffd6e7; /* 天気セクションの背景色 */
+  background-color: #ffd6e7;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 10px;
 }
 
-.slack {
-  height: 15%;
-  background-color: #b5f5ec; /* Slackセクションの背景色 */
+.weather-icon {
+  font-size: 3rem;
+  margin-bottom: 10px;
 }
 
-/* サブセクションのスタイル */
+.weather-info {
+  font-size: 1.2rem;
+}
+
+.content {
+  height: auto;
+  flex: 1; /* 残りの領域を埋める */
+  display: flex;
+  background-color: #fff;
+}
+
 .subsection {
   flex: 1;
   border: 1px dashed #aaa;
@@ -59,4 +72,11 @@ body {
   justify-content: center;
   align-items: center;
   font-size: 1.2rem;
+}
+
+.slack {
+  height: 15%;
+  background-color: #b5f5ec;
+  position: sticky;
+  bottom: 0;
 }
