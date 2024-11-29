@@ -11,11 +11,7 @@ function App() {
       const now = new Date();
       
       // 日付のフォーマット
-      const formattedDate = now.toLocaleDateString("ja-JP", {
-        year: "numeric",
-        month: "2-digit",
-        day: "2-digit",
-      }).replace(/\//g, "年").replace("年", "年").replace("月", "月").replace("日", "日");
+      const formattedDate = `${now.getFullYear()}年${String(now.getMonth()+1).padStart(2, "0")}月${String(now.getDate()).padStart(2, "0")}日`;
 
       // 時刻のフォーマット
       const formattedTime = now.toLocaleTimeString("ja-JP", {
@@ -40,11 +36,10 @@ function App() {
 
   return (
     <div className="container">
-      {/* 日付を表示するセクション */}
-      <div className="section date">{date}</div>
-
-      {/* 時刻を表示するセクション */}
-      <div className="section time">{time}</div>
+      <div className="section date-time">
+          <div className="date">{date}</div>
+          <div className="time">{time}</div>
+      </div>
 
       <div className="section weather">
         <div className="weather-icon">☀️</div>

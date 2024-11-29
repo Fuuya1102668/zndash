@@ -30,24 +30,24 @@ body {
   font-size: 1.5rem;
 }
 
+.date-time{
+    height: 20%;
+    background-color: #e6f7ff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 .date {
-  height: 10%; /* 日付セクションの高さ */
-  background-color: #e6f7ff; /* 背景色を薄い青 */
-  font-size: 2rem; /* 日付を大きく表示 */
+  font-size: 7rem; /* 日付を大きく表示 */
   font-weight: bold; /* 太字で強調 */
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  margin-bottom: 5px;
 }
 
 .time {
-  height: 10%; /* 時刻セクションの高さ */
-  background-color: #d9f7be; /* 背景色を薄い緑 */
-  font-size: 2.5rem; /* 時計を大きく表示 */
+  font-size: 10.5rem; /* 時計を大きく表示 */
   font-weight: bold; /* 太字で強調 */
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .weather {
