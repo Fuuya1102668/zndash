@@ -3,24 +3,36 @@ import React, { useState, useEffect } from "react";
 import "./App.css";
 
 function App() {
+  const [date, setDate] = useState("");
   const [time, setTime] = useState("");
 
   useEffect(() => {
-    const updateTime = () => {
+    const updateDateTime = () => {
       const now = new Date();
+      
+      // 日付のフォーマット
+      const formattedDate = now.toLocaleDateString("ja-JP", {
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+      }).replace(/\//g, "年").replace("年", "年").replace("月", "月").replace("日", "日");
+
+      // 時刻のフォーマット
       const formattedTime = now.toLocaleTimeString("ja-JP", {
         hour: "2-digit",
         minute: "2-digit",
         second: "2-digit",
       });
+
+      setDate(formattedDate);
       setTime(formattedTime);
     };
 
     // 初回実行
-    updateTime();
+    updateDateTime();
 
-    // 1秒ごとに時刻を更新
-    const timer = setInterval(updateTime, 1000);
+    // 1秒ごとに日付と時刻を更新
+    const timer = setInterval(updateDateTime, 1000);
 
     // クリーンアップ
     return () => clearInterval(timer);
@@ -28,8 +40,12 @@ function App() {
 
   return (
     <div className="container">
-      {/* 時刻欄にリアルタイム時計を表示 */}
+      {/* 日付を表示するセクション */}
+      <div className="section date">{date}</div>
+
+      {/* 時刻を表示するセクション */}
       <div className="section time">{time}</div>
+
       <div className="section weather">
         <div className="weather-icon">☀️</div>
         <div className="weather-info">降水量</div>
@@ -44,3 +60,4 @@ function App() {
 }
 
 export default App;
+

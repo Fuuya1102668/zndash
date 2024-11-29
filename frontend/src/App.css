@@ -30,12 +30,21 @@ body {
   font-size: 1.5rem;
 }
 
+.date {
+  height: 10%; /* 日付セクションの高さ */
+  background-color: #e6f7ff; /* 背景色を薄い青 */
+  font-size: 2rem; /* 日付を大きく表示 */
+  font-weight: bold; /* 太字で強調 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 .time {
-  height: 15%;
-  background-color: #d9f7be;
+  height: 10%; /* 時刻セクションの高さ */
+  background-color: #d9f7be; /* 背景色を薄い緑 */
   font-size: 2.5rem; /* 時計を大きく表示 */
-  font-weight: bold; /* 太字で視認性を向上 */
+  font-weight: bold; /* 太字で強調 */
   display: flex;
   justify-content: center;
   align-items: center;
