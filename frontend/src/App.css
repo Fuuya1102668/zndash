@@ -30,9 +30,15 @@ body {
   font-size: 1.5rem;
 }
 
+
 .time {
   height: 15%;
   background-color: #d9f7be;
+  font-size: 2.5rem; /* 時計を大きく表示 */
+  font-weight: bold; /* 太字で視認性を向上 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .weather {
