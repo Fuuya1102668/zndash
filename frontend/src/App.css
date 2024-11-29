@@ -1,38 +1,62 @@
-.App {
-  text-align: center;
+/* App.css */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.container {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  height: 100vh;
+  width: 100%;
+  max-width: 3440px;
+  margin: 0 auto;
+  background-color: white;
+  box-sizing: border-box;
+  padding: 10px;
+}
+
+/* 各セクションの共通スタイル */
+.section {
+  border: 1px solid #ccc;
+  margin: 5px 0;
+  padding: 10px;
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+  text-align: center;
+  font-size: 1.5rem;
 }
 
-.App-link {
-  color: #61dafb;
+/* 特定のセクションにスタイルを適用 */
+.time {
+  height: 15%;
+  background-color: #d9f7be; /* 時刻セクションの背景色 */
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.weather {
+  display: flex;
+  flex-direction: row;
+  height: 20%;
+  background-color: #ffd6e7; /* 天気セクションの背景色 */
+}
+
+.slack {
+  height: 15%;
+  background-color: #b5f5ec; /* Slackセクションの背景色 */
+}
+
+/* サブセクションのスタイル */
+.subsection {
+  flex: 1;
+  border: 1px dashed #aaa;
+  margin: 0 5px;
+  padding: 10px;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
 }
