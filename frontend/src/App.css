@@ -30,44 +30,140 @@ body {
   font-size: 1.5rem;
 }
 
-.date-time{
-    height: 20%;
-    background-color: #e6f7ff;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+.date-time-container {
+  display: grid;
+  grid-template-areas:
+    "date seminar"
+    "time seminar";
+  grid-template-rows: 1fr 1fr;
+  grid-template-columns: 1fr 2fr;
+  gap: 10px;
+  height: 20%;
+  background-color: #e6f7ff;
+  padding: 10px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }
 
-.date {
-  font-size: 7rem; /* 日付を大きく表示 */
-  font-weight: bold; /* 太字で強調 */
-  margin-bottom: 5px;
+.date-section {
+  grid-area: date;
+  font-size: 3rem;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #d0e1ff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }
 
-.time {
-  font-size: 10.5rem; /* 時計を大きく表示 */
-  font-weight: bold; /* 太字で強調 */
+.time-section {
+  grid-area: time;
+  font-size: 5rem;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #d0e1ff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }
 
-.weather {
+.seminar-section {
+  grid-area: seminar;
+  position: relative;
+  background-color: #d0e1ff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center; /* 縦方向の中央揃え */
+  align-items: center; /* 横方向の中央揃え */
+  text-align: center;
+  }
+
+.seminar-title {
+  grid-area: seminar;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  font-size: 3.5rem;
+  font-weight: bold;
+  background-color: #b0c1ff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.seminar-date {
+  position: relative;
+  font-size: 6rem;
+  font-weight: bold;
+  background-color: #b0c1ff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.weather-container {
+  display: grid;
+  grid-template-areas:
+    "icon info";
+  grid-template-rows: 1fr;
+  grid-template-columns: 1fr 2fr;
+  gap: 10px;
   height: 20%;
   background-color: #ffd6e7;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
   padding: 10px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  overflow: hidden;
 }
 
-.weather-icon {
-  font-size: 3rem;
-  margin-bottom: 10px;
+.icon-section {
+  grid-area: icon;
+  display: flex;
+  justify-content: center; /* 縦方向の中央揃え */
+  align-items: center; /* 横方向の中央揃え */
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }
 
-.weather-info {
-  font-size: 1.2rem;
+.icon-section img {
+  height: 100%;
+  width: auto;
+  object-fit: contain;
+}
+
+.info-section {
+  grid-area: info;
+  position: relative;
+  background-color: #ffd6e7;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center; /* 縦方向の中央揃え */
+  align-items: center; /* 横方向の中央揃え */
+  text-align: center;
+}
+
+.info-title {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  font-size: 3.5rem;
+  font-weight: bold;
+  background-color: #ffb6c7;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.info-info {
+  position: relative;
+  font-size: 6rem;
+  font-weight: bold;
+  background-color: #ffb6c7;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }
 
 .content {
@@ -95,3 +191,4 @@ body {
   position: sticky;
   bottom: 0;
 }
+
