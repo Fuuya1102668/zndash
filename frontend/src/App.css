@@ -56,41 +56,28 @@ body {
 
 .date-section {
   grid-area: date;
-  display: grid;
-  grid-template-areas:
-    "year month"
-    "month month";
-  grid-template-rows: 1fr 1fr;
-  grid-template-columns: 1fr 1fr;
-  font-size: 3rem;
-  font-weight: bold;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  font-size: 3rem;
+  font-weight: bold;
   background-color: #d0e1ff;
   border: 1px solid #ccc;
   border-radius: 5px;
 }
 
 .year-section {
-  grid-area: year;
-  font-size: 3rem;
+  font-size: 4rem;
   font-weight: bold;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   background-color: #d0e1ff;
   border: 1px solid #ccc;
   border-radius: 5px;
 }
 
 .month-section {
-  grid-area: month;
-  font-size: 3rem;
+  font-size: 6rem;
   font-weight: bold;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   background-color: #d0e1ff;
   border: 1px solid #ccc;
   border-radius: 5px;
