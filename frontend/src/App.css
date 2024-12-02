@@ -14,10 +14,9 @@ body {
     "slack slack"
     "bus znd"
     "schedule znd";
-  grid-template-rows: auto auto 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
   grid-template-columns: 1fr 1fr;
   gap: 10px;
-  flex-direction: column;
   height: 100vh;
   width: 100%;
   max-width: 3440px;
@@ -48,7 +47,6 @@ body {
   grid-template-rows: 1fr 1fr;
   grid-template-columns: 1fr 2fr;
   gap: 10px;
-  height: 20%;
   background-color: #e6f7ff;
   padding: 10px;
   box-sizing: border-box;
@@ -121,7 +119,6 @@ body {
   grid-template-rows: 1fr;
   grid-template-columns: 1fr 2fr;
   gap: 10px;
-  height: 10%;
   background-color: #ffd6e7;
   padding: 10px;
   box-sizing: border-box;
@@ -177,12 +174,11 @@ body {
   border-radius: 5px;
 }
 
-.slack-container {
+.slack-containar {
   grid-area: slack;
   display: grid;
   gap: 10px;
-  height: 20%;
-  background-color: #e6f7ff;
+  background-color: #ffccff;
   padding: 10px;
   box-sizing: border-box;
   border: 1px solid #ccc;
@@ -191,12 +187,33 @@ body {
 
 .bus-containar {
   grid-area: bus;
+  display: grid;
+  gap: 10px;
+  background-color: #ccffff;
+  padding: 10px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }
 
 .schedule-containar {
   grid-area: schedule;
+  display: grid;
+  gap: 10px;
+  background-color: #ffffcc;
+  padding: 10px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }
 
 .znd-containar {
   grid-area: znd;
+  display: grid;
+  gap: 10px;
+  background-color: #ccffcc;
+  padding: 10px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }
