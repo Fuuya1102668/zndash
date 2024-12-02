@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import "./App.css";
 
 function App() {
+  const [year, setYear] = useState("");
+  const [month, setMonth] = useState("");
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
   const [nextSeminar, setNextSeminar] = useState("12月02日");
@@ -11,9 +13,9 @@ function App() {
       const now = new Date();
 
       // 日付のフォーマット
-      const formattedDate = `${now.getFullYear()}年${String(
-        now.getMonth() + 1
-      ).padStart(2, "0")}月${String(now.getDate()).padStart(2, "0")}日`;
+      const formattedYear = `${now.getFullYear()}年`;
+      const formattedMonth = `${String(now.getMonth() + 1).padStart(2, "0")}月`;
+      const formattedDate = `${String(now.getDate()).padStart(2, "0")}日`;
 
       // 時刻のフォーマット
       const formattedTime = now.toLocaleTimeString("ja-JP", {
@@ -22,6 +24,8 @@ function App() {
         second: "2-digit",
       });
 
+      setYear(formattedYear);
+      setMonth(formattedMonth);
       setDate(formattedDate);
       setTime(formattedTime);
     };
@@ -39,7 +43,7 @@ function App() {
   return (
     <div className="container">
       <div className="date-time-container">
-        <div className="date-section">{date}</div>
+        <div className="date-section">{year}<br>{month}{date}</div>
         <div className="time-section">{time}</div>
         <div className="seminar-section">
             <div className="seminar-title">ゼミ</div>
