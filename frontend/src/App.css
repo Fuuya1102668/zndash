@@ -7,7 +7,16 @@ body {
 }
 
 .container {
-  display: flex;
+  display: grid;
+  grid-template-areas:
+    "date-time date-time"
+    "weather weather"
+    "slack slack"
+    "bus znd"
+    "schedule znd";
+  grid-template-rows: auto auto 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
   flex-direction: column;
   height: 100vh;
   width: 100%;
@@ -31,6 +40,7 @@ body {
 }
 
 .date-time-container {
+  grid-area: date-time;
   display: grid;
   grid-template-areas:
     "date seminar"
@@ -104,13 +114,14 @@ body {
 }
 
 .weather-container {
+  grid-area: weather;
   display: grid;
   grid-template-areas:
     "icon info";
   grid-template-rows: 1fr;
   grid-template-columns: 1fr 2fr;
   gap: 10px;
-  height: 20%;
+  height: 10%;
   background-color: #ffd6e7;
   padding: 10px;
   box-sizing: border-box;
@@ -166,29 +177,26 @@ body {
   border-radius: 5px;
 }
 
-.content {
-  height: auto;
-  flex: 1; /* 残りの領域を埋める */
-  display: flex;
-  background-color: #fff;
-}
-
-.subsection {
-  flex: 1;
-  border: 1px dashed #aaa;
-  margin: 0 5px;
+.slack-container {
+  grid-area: slack;
+  display: grid;
+  gap: 10px;
+  height: 20%;
+  background-color: #e6f7ff;
   padding: 10px;
-  background-color: #fff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 1.2rem;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }
 
-.slack {
-  height: 15%;
-  background-color: #b5f5ec;
-  position: sticky;
-  bottom: 0;
+.bus-containar {
+  grid-area: bus;
 }
 
+.schedule-containar {
+  grid-area: schedule;
+}
+
+.znd-containar {
+  grid-area: znd;
+}

@@ -48,18 +48,23 @@ function App() {
       </div>
       <div className="weather-container">
         <div className="icon-section">
-          <img src="/icons/sun.png" alt="晴れ"/>
+          <img src="/icons/sun.svg" alt="晴れ"/>
         </div>
         <div className="info-section">
           <div className="info-title">降水量</div>
           <div className="info-info">4mm</div>
         </div>
       </div>
-      <div className="section content">
-        <div className="subsection">バス</div>
-        <div className="subsection">Znd</div>
+      <div className="slack-containar">Slack</div>
+      <div className="bus-containar">
+        バス
       </div>
-      <div className="section slack">Slack</div>
+      <div className="schedule-containar">
+        予定
+      </div>
+      <div className="znd-containar">
+        <img src="/icons/sun.svg" alt="晴れ"/>
+      </div>
     </div>
   );
 }
