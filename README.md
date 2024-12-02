@@ -23,7 +23,7 @@ pip install pydantic slack_sdk
 
 ```
 npm install -g @vue/cli
-vue create frontend
+npx create-react-app frontend
 cd frontend
 npm run serve
 ```
