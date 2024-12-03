@@ -193,7 +193,6 @@ body {
   top: 20px;
   left: 20px;
   font-size: 3.5rem;
-  font-weight: bold;
   background-color: #ffb6c7;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -223,9 +222,6 @@ body {
     grid-area: bus;
     display: grid;
     grid-template-rows: 1.5fr 1fr 1fr 1fr;
-    gap: 10px;
-    height: 100%;
-    width: 100%;
     background-color: #ccffff;
     padding: 10px;
     box-sizing: border-box;
@@ -234,22 +230,49 @@ body {
 }
 
 .bus-next {
-    display: flex;
-    justify-content: lest;
-    align-items: flex-end;
+    display: grid;
+    grid-template-areas:
+        "time remain";
+    grid-template-columns: 1.5fr 1fr;
     background-color: #aaffff;
-    font-size: 8rem;
     font-weight: bold;
     border: 1px solid #ccc;
     border-radius: 5px;
 }
 
+.bus-ntime {
+    font-size: 7rem;
+}
 .bus-time {
+    font-size: 4rem;
+}
+
+.bus-ntime,
+.bus-time {
+    grid: time;
     display: flex;
     justify-content: lest;
     align-items: flex-end;
     background-color: #aaffff;
-    font-size: 4rem;
+    font-weight: bold;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.bus-nremain {
+    font-size: 6rem;
+}
+.bus-remain {
+    font-size: 3rem;
+}
+
+.bus-nremain,
+.bus-remain {
+    grid: remain;
+    display: flex;
+    justify-content: right;
+    align-items: flex-end;
+    background-color: #aaffff;
     font-weight: bold;
     border: 1px solid #ccc;
     border-radius: 5px;

@@ -75,10 +75,22 @@ function App() {
             </div>
             <div className="slack-containar">Slack</div>
                 <div className="bus-containar">
-                    <div className="bus-next">17:10</div>
-                    <div className="bus-time">17:40</div>
-                    <div className="bus-time">18:30</div>
-                    <div className="bus-time">19:50</div>
+                    <div className="bus-next">
+                        <div className="bus-ntime">17:10</div>
+                        <div className="bus-nremain">00:00</div>
+                    </div>
+                    <div className="bus-next">
+                        <div className="bus-time">17:40</div>
+                        <div className="bus-remain">00:30</div>
+                    </div>
+                    <div className="bus-next">
+                        <div className="bus-time">18:30</div>
+                        <div className="bus-remain">01:20</div>
+                    </div>
+                    <div className="bus-next">
+                        <div className="bus-time">19:50</div>
+                        <div className="bus-remain">02:40</div>
+                    </div>
                 </div>
             <div className="schedule-containar">
                 予定
