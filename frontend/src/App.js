@@ -44,7 +44,6 @@ function App() {
         <div className="container">
             <div className="date-time-container">
                 <div className="date-section">
-                    <div className="year-section">{year}</div>
                     <div className="month-section">{month}{day}</div>
                 </div>
                 <div className="time-section">{time}</div>
@@ -93,7 +92,30 @@ function App() {
                     </div>
                 </div>
             <div className="schedule-containar">
-                予定
+                <div className="schedule-section">
+                    <div className="schedule-date">
+                        01月08日
+                    </div>
+                    <div className="schedule-sentence">
+                        月曜授業
+                    </div>
+                </div>
+                <div className="schedule-section">
+                    <div className="schedule-date">
+                        01月22日
+                    </div>
+                    <div className="schedule-sentence">
+                        PD3予稿・本文提出 
+                    </div>
+                </div>
+                <div className="schedule-section">
+                    <div className="schedule-date">
+                        02月14日
+                    </div>
+                    <div className="schedule-sentence">
+                        PD3公開審査会
+                    </div>
+                </div>
             </div>
             <div className="znd-containar">
                 <img src="/icons/sun.svg" alt="晴れ"/>

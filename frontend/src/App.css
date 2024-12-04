@@ -7,21 +7,21 @@ body {
 }
 
 .container {
-  display: grid;
-  grid-template-areas:
-    "date-time date-time"
-    "weather weather"
-    "slack slack"
-    "bus znd"
-    "schedule znd";
-  grid-template-rows: 1fr 1.5fr 1fr 1fr 1fr;
-  grid-template-columns: 1fr 1fr;
-  height: 100vh;
-  width: 100%;
-  max-width: 3440px;
-  margin: 0 auto;
-  background-color: white;
-  box-sizing: border-box;
+    display: grid;
+    grid-template-areas:
+      "date-time date-time"
+      "weather weather"
+      "slack slack"
+      "bus znd"
+      "schedule znd";
+    grid-template-rows: 0.8fr 1fr 0.5fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+    height: 100vh;
+    width: 100%;
+    max-width: 3440px;
+    margin: 0 auto;
+    background-color: white;
+    box-sizing: border-box;
 }
 
 /* 各セクションの共通スタイル */
@@ -40,10 +40,10 @@ body {
   grid-area: date-time;
   display: grid;
   grid-template-areas:
-    "date seminar"
-    "time seminar";
+    "date time"
+    "seminar time";
   grid-template-rows: 1fr 1fr;
-  grid-template-columns: 1fr 2fr;
+  grid-template-columns: 1fr 1.5fr;
   gap: 10px;
   background-color: #e6f7ff;
   padding: 10px;
@@ -65,6 +65,7 @@ body {
   border-radius: 5px;
 }
 
+/*
 .year-section {
   font-size: 4rem;
   font-weight: bold;
@@ -72,6 +73,7 @@ body {
   border: 1px solid #ccc;
   border-radius: 5px;
 }
+*/
 
 .month-section {
   font-size: 6rem;
@@ -82,63 +84,65 @@ body {
 }
 
 .time-section {
-  grid-area: time;
-  font-size: 5rem;
-  font-weight: bold;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #d0e1ff;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+    grid-area: time;
+    font-size: 12rem;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #d0e1ff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
 }
 
 .seminar-section {
-  grid-area: seminar;
-  position: relative;
-  background-color: #d0e1ff;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  display: flex;
-  justify-content: center; /* 縦方向の中央揃え */
-  align-items: center; /* 横方向の中央揃え */
-  text-align: center;
-  }
+    grid-area: seminar;
+    position: relative;
+    background-color: #d0e1ff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center; /* 縦方向の中央揃え */
+    align-items: flex-end;
+    text-align: center;
+}
 
 .seminar-title {
-  grid-area: seminar;
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  font-size: 3.5rem;
-  font-weight: bold;
-  background-color: #b0c1ff;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+    grid-area: seminar;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 3em;
+    font-weight: bold;
+    background-color: #b0c1ff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
 }
 
 .seminar-date {
-  position: relative;
-  font-size: 6rem;
-  font-weight: bold;
-  background-color: #b0c1ff;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    font-size: 4rem;
+    font-weight: bold;
+    background-color: #b0c1ff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
 }
 
 .weather-container {
-  grid-area: weather;
-  display: grid;
-  grid-template-areas:
-    "today"
-    "tomorrow";
-  gap: 10px;
-  background-color: #ffd6e7;
-  padding: 10px;
-  box-sizing: border-box;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  overflow: hidden;
+    grid-area: weather;
+    display: grid;
+    grid-template-areas:
+      "today"
+      "tomorrow";
+    gap: 10px;
+    background-color: #ffd6e7;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    overflow: hidden;
 }
 
 .today-container{
@@ -241,10 +245,10 @@ body {
 }
 
 .bus-ntime {
-    font-size: 7rem;
+    font-size: 10rem;
 }
 .bus-time {
-    font-size: 4rem;
+    font-size: 6rem;
 }
 
 .bus-ntime,
@@ -263,7 +267,7 @@ body {
     font-size: 6rem;
 }
 .bus-remain {
-    font-size: 3rem;
+    font-size: 4rem;
 }
 
 .bus-nremain,
@@ -285,6 +289,38 @@ body {
     background-color: #ffffcc;
     padding: 10px;
     box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.schedule-section{
+    display: grid;
+    grid-area: 
+        "date"
+        "sentence";
+    grid-template-rows: 1fr 2fr;
+    background-color: #ffffcc;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.schedule-date{
+    grid: date;
+    display: flex;
+    align-items: flex-end;
+    font-size: 2rem;
+    background-color: #ffffaa;
+    font-weight: bold;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.schedule-sentence{
+    grid: sentence;
+    font-size: 2rem;
+    background-color: #ffffaa;
+    font-weight: bold;
     border: 1px solid #ccc;
     border-radius: 5px;
 }
