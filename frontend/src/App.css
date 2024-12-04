@@ -327,7 +327,8 @@ body {
 
 .znd-containar {
     grid-area: znd;
-    display: grid;
+    display: flex;
+    align-items: flex-end;
     gap: 10px;
     background-color: #ccffcc;
     padding: 10px;
@@ -335,3 +336,10 @@ body {
     border: 1px solid #ccc;
     border-radius: 5px;
 }
+
+.znd-containar img {
+  height: auto;
+  width: 100%;
+  object-fit: contain;
+}
+

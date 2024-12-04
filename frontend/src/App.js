@@ -118,7 +118,7 @@ function App() {
                 </div>
             </div>
             <div className="znd-containar">
-                <img src="/icons/sun.svg" alt="晴れ"/>
+                <img src="/icons/znd.png" alt="ずんだもん"/>
             </div>
         </div>
     );
