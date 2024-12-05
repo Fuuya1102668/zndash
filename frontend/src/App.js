@@ -92,7 +92,7 @@ function App() {
             </div>
             <div className="slack-containar">
                 {news.length > 0 ? (
-                    {news.map((article, index) => (
+                    news.map((article, index) => (
                         <div key={index}>
                             {article.description}
                         </div>
@@ -100,7 +100,6 @@ function App() {
                 ) : (
                     <p>現在、取得可能なニュースがありません。</p>
                 )}
-                }
             </div>
                 <div className="bus-containar">
                     <div className="bus-next">
