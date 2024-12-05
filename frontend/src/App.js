@@ -31,7 +31,25 @@ function App() {
         };
 
         const fetchNews = async() => {
-            const apiKey = ""
+            const apiKey = "652a920d33064c4baf23613ec7c53cd6"
+            const url = `https://newsapi.org/v2/top-headlines?country=jp&category=business&apiKey=${apiKey}`;
+      
+            try {
+                setLoading(true);
+                const response = await fetch(url);
+                if (!response.ok) {
+                    throw new Error("Failed to fetch news");
+                }
+                const data = await response.json();
+                setNews(data.articles); // ニュースデータを保存
+            } catch (err) {
+                setError(err.message);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchNews();
 
         // 初回実行
         updateDateTime();
