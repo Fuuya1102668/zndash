@@ -94,7 +94,7 @@ function App() {
             {news.map((articleo, index) => (
                 <div key={index}>
                     {article.description}
-                </dev>
+                </div>
             ))}
             </div>
                 <div className="bus-containar">
