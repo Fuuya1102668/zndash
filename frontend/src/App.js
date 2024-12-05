@@ -91,7 +91,7 @@ function App() {
                 </div>
             </div>
             <div className="slack-containar">
-            {news.map((articleo, index) => (
+            {news.map((article, index) => (
                 <div key={index}>
                     {article.description}
                 </div>
