@@ -14,7 +14,7 @@ body {
       "slack slack"
       "bus znd"
       "schedule znd";
-    grid-template-rows: 0.8fr 1fr 0.5fr 1fr 1fr;
+    grid-template-rows: 0.6fr 0.9fr 0.5fr 1fr 1fr;
     grid-template-columns: 1fr 1fr;
     height: 100vh;
     width: 100%;
@@ -120,9 +120,9 @@ body {
 }
 
 .seminar-date {
-    position: relative;
-    display: flex;
-    align-items: flex-end;
+    position: absolute;
+    top: 100px;
+    left: 30px;
     font-size: 4rem;
     font-weight: bold;
     background-color: #b0c1ff;
@@ -328,6 +328,7 @@ body {
 .znd-containar {
     grid-area: znd;
     display: flex;
+    justify-content: center;
     align-items: flex-end;
     gap: 10px;
     background-color: #ccffcc;
@@ -338,8 +339,8 @@ body {
 }
 
 .znd-containar img {
-  height: auto;
-  width: 100%;
-  object-fit: contain;
+    height: auto;
+    width: 150%;
+    object-fit: contain;
 }
 

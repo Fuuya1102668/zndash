@@ -30,6 +30,9 @@ function App() {
             setTime(formattedTime);
         };
 
+        const fetchNews = async() => {
+            const apiKey = ""
+
         // 初回実行
         updateDateTime();
 
@@ -54,22 +57,16 @@ function App() {
             </div>
             <div className="weather-container">
                 <div className="today-container">
-                    <div className="icon-section">
-                        <img src="/icons/sun.svg" alt="晴れ"/>
-                    </div>
-                    <div className="info-section">
-                        <div className="info-title">降水量</div>
-                        <div className="info-info">4mm</div>
-                    </div>
+                    <img src="/icons/sun.svg" alt="晴れ"/>
                 </div>
                 <div className="tomorrow-container">
-                    <div className="icon-section">
-                        <img src="/icons/sun.svg" alt="晴れ"/>
-                    </div>
-                    <div className="info-section">
-                        <div className="info-title">降水量</div>
-                        <div className="info-info">133mm</div>
-                    </div>
+                    <img src="/icons/sun.svg" alt="晴れ"/>
+                </div>
+                <div className="info-container">
+                    晴れ　時々　雨
+                </div>
+                <div className="rain-container">
+                    降水量
                 </div>
             </div>
             <div className="slack-containar">Slack</div>
