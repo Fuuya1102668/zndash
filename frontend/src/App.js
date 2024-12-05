@@ -92,7 +92,7 @@ function App() {
             </div>
             <div className="slack-containar">
             {news.map((article, index) => (
-                <p>{article.description}</p>
+                {article.description}
             ))}
             </div>
                 <div className="bus-containar">
