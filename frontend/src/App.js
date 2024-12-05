@@ -7,6 +7,9 @@ function App() {
     const [day, setDay] = useState("");
     const [time, setTime] = useState("");
     const [nextSeminar, setNextSeminar] = useState("12月02日");
+    const [news, setNews] = useState([]); // ニュースデータを格納
+    const [loading, setLoading] = useState(true); // ローディング状態
+    const [error, setError] = useState(null); // エラー情報
 
     useEffect(() => {
         const updateDateTime = () => {
