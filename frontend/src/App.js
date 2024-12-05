@@ -100,6 +100,7 @@ function App() {
                 ) : (
                     <p>現在、取得可能なニュースがありません。</p>
                 )}
+                }
             </div>
                 <div className="bus-containar">
                     <div className="bus-next">
