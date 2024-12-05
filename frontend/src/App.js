@@ -91,11 +91,15 @@ function App() {
                 </div>
             </div>
             <div className="slack-containar">
-            {news.map((article, index) => (
-                <div key={index}>
-                    {article.description}
-                </div>
-            ))}
+                {news.length > 0 ? (
+                    {news.map((article, index) => (
+                        <div key={index}>
+                            {article.description}
+                        </div>
+                    ))
+                ) : (
+                    <p>現在、取得可能なニュースがありません。</p>
+                )}
             </div>
                 <div className="bus-containar">
                     <div className="bus-next">
