@@ -7,9 +7,6 @@ function App() {
     const [day, setDay] = useState("");
     const [time, setTime] = useState("");
     const [nextSeminar, setNextSeminar] = useState("12月02日");
-    const [news, setNews] = useState([]); // ニュースデータを格納
-    const [loading, setLoading] = useState(true); // ローディング状態
-    const [error, setError] = useState(null); // エラー情報
 
     useEffect(() => {
         const updateDateTime = () => {
@@ -32,27 +29,6 @@ function App() {
             setDay(formattedDay);
             setTime(formattedTime);
         };
-
-        const fetchNews = async() => {
-            const apiKey = "652a920d33064c4baf23613ec7c53cd6"
-            const url = `https://newsapi.org/v2/top-headlines?country=jp&category=business&apiKey=${apiKey}`;
-      
-            try {
-                setLoading(true);
-                const response = await fetch(url);
-                if (!response.ok) {
-                    throw new Error("Failed to fetch news");
-                }
-                const data = await response.json();
-                setNews(data.articles); // ニュースデータを保存
-            } catch (err) {
-                setError(err.message);
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchNews();
 
         // 初回実行
         updateDateTime();
@@ -91,15 +67,7 @@ function App() {
                 </div>
             </div>
             <div className="slack-containar">
-                {news.length > 0 ? (
-                    news.map((article, index) => (
-                        <div key={index}>
-                            {article.description}
-                        </div>
-                    ))
-                ) : (
-                    <p>現在、取得可能なニュースがありません。</p>
-                )}
+                slack
             </div>
                 <div className="bus-containar">
                     <div className="bus-next">
