@@ -90,7 +90,9 @@ function App() {
                     降水量
                 </div>
             </div>
-            <div className="slack-containar">Slack</div>
+            <div className="slack-containar">
+                {article.description}
+            </div>
                 <div className="bus-containar">
                     <div className="bus-next">
                         <div className="bus-ntime">17:10</div>
