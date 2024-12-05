@@ -91,7 +91,15 @@ function App() {
                 </div>
             </div>
             <div className="slack-containar">
-                {article.description}
+            {news.map((article, index) => (
+              <li key={index} style={{ marginBottom: "20px", borderBottom: "1px solid #ccc", paddingBottom: "10px" }}>
+                <h2 style={{ fontSize: "1.2rem", color: "#333" }}>{article.title}</h2>
+                <p>{article.description}</p>
+                <a href={article.url} target="_blank" rel="noopener noreferrer" style={{ color: "blue" }}>
+                  記事を読む
+                </a>
+              </li>
+            ))}
             </div>
                 <div className="bus-containar">
                     <div className="bus-next">
