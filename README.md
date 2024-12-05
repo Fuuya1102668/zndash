@@ -28,6 +28,40 @@ cd frontend
 npm run serve
 ```
 
+```
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
+source ~/.bashrc
+```
+
+```
+nvm install --lts
+nvm use --lts
+```
+
+```
+node -v
+npm -v
+```
+
+```
+mkdir backend
+cd backend
+npm init -y
+```
+
+```
+touch index.js
+"scripts": {
+  "start": "node index.js",
+  "dev": "nodemon index.js"
+}
+```
+
+```
+npm start
+```
+
+
 ### ディレクトリ構成
 ```
 project-root/
