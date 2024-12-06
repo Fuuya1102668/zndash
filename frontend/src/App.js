@@ -7,6 +7,9 @@ function App() {
     const [day, setDay] = useState("");
     const [time, setTime] = useState("");
     const [nextSeminar, setNextSeminar] = useState("12月02日");
+    const [articles, setArticles] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
         const updateDateTime = () => {
@@ -29,9 +32,24 @@ function App() {
             setDay(formattedDay);
             setTime(formattedTime);
         };
+        const fetchRSS = async () => {
+            try {
+                const response = await fetch('http://localhost:5000/api/rss'); // バックエンドのAPIを呼び出す
+                if (!response.ok) {
+                    throw new Error('Failed to fetch RSS data');
+                }
+                const data = await response.json();
+                setArticles(data);
+            } catch (error) {
+                setError(error.message);
+            } finally {
+                setLoading(false);
+            }
+        };      
 
         // 初回実行
         updateDateTime();
+        fetchRSS();
 
         // 1秒ごとに日付と時刻を更新
         const timer = setInterval(updateDateTime, 1000);
@@ -53,21 +71,23 @@ function App() {
                 </div>
             </div>
             <div className="weather-container">
-                <div className="today-container">
-                    <img src="/icons/sun.svg" alt="晴れ"/>
+                <div className="rain-section">
+                    降水量
                 </div>
-                <div className="tomorrow-container">
-                    <img src="/icons/sun.svg" alt="晴れ"/>
-                </div>
-                <div className="info-container">
+                <div className="info-section">
                     晴れ　時々　雨
                 </div>
-                <div className="rain-container">
-                    降水量
+                <div className="tomorrow-section">
+                    <img src="/icons/sun.svg" alt="晴れ"/>
                 </div>
             </div>
             <div className="slack-containar">
-                slack
+                    {articles.map((article, index) => (
+                        <div key={index} style={{ marginBottom: '20px', borderBottom: '1px solid #ccc', paddingBottom: '10px' }}>
+                            {article.title}
+                            {article.description}
+                        </div>
+                    ))}
             </div>
                 <div className="bus-containar">
                     <div className="bus-next">
@@ -81,10 +101,6 @@ function App() {
                     <div className="bus-next">
                         <div className="bus-time">18:30</div>
                         <div className="bus-remain">01:20</div>
-                    </div>
-                    <div className="bus-next">
-                        <div className="bus-time">19:50</div>
-                        <div className="bus-remain">02:40</div>
                     </div>
                 </div>
             <div className="schedule-containar">
@@ -114,7 +130,6 @@ function App() {
                 </div>
             </div>
             <div className="znd-containar">
-                <img src="/icons/znd.png" alt="ずんだもん"/>
             </div>
         </div>
     );

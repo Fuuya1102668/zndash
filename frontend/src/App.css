@@ -12,9 +12,9 @@ body {
       "date-time date-time"
       "weather weather"
       "slack slack"
-      "bus znd"
-      "schedule znd";
-    grid-template-rows: 0.6fr 0.9fr 0.5fr 1fr 1fr;
+      "bus schedule"
+      "znd znd";
+    grid-template-rows: 2fr 1fr 1fr 1fr 5fr;
     grid-template-columns: 1fr 1fr;
     height: 100vh;
     width: 100%;
@@ -53,34 +53,24 @@ body {
 }
 
 .date-section {
-  grid-area: date;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  font-size: 3rem;
-  font-weight: bold;
-  background-color: #d0e1ff;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+    grid-area: date;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 3rem;
+    font-weight: bold;
+    background-color: #d0e1ff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
 }
-
-/*
-.year-section {
-  font-size: 4rem;
-  font-weight: bold;
-  background-color: #b0c1ff;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-*/
 
 .month-section {
-  font-size: 6rem;
-  font-weight: bold;
-  background-color: #b0c1ff;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+    font-size: 6rem;
+    font-weight: bold;
+    background-color: #b0c1ff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
 }
 
 .time-section {
@@ -134,8 +124,10 @@ body {
     grid-area: weather;
     display: grid;
     grid-template-areas:
-      "today"
-      "tomorrow";
+      "rain tomorrow"
+      "info tomorrow";
+    grid-template-rows: 10fr 1fr;
+    grid-template-columns: 7fr 1fr;
     gap: 10px;
     background-color: #ffd6e7;
     padding: 10px;
@@ -145,70 +137,34 @@ body {
     overflow: hidden;
 }
 
-.today-container{
-    grid-area: today;
-}
-
-.tomorrow-container{
-    grid-area: tomorrow;
-}
-
-.today-container,
-.tomorrow-container{
-    display: grid;
-    grid-template-areas:
-        "icon info";
-    grid-template-columns: 1fr 3fr;
+.rain-section{
+    grid-area: rain;
     background-color: #ffd6e7;
     box-sizing: border-box;
     border: 1px solid #ccc;
     border-radius: 5px;
 }
 
-.icon-section {
-  grid-area: icon;
-  display: flex;
-  justify-content: center; /* 縦方向の中央揃え */
-  align-items: center; /* 横方向の中央揃え */
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-.icon-section img {
-  height: 100%;
-  width: auto;
-  object-fit: contain;
-}
-
 .info-section {
-  grid-area: info;
-  position: relative;
-  background-color: #ffd6e7;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  display: flex;
-  justify-content: center; /* 縦方向の中央揃え */
-  align-items: center; /* 横方向の中央揃え */
-  text-align: center;
+    grid-area: info;
+    background-color: #ffd6e7;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 5px;
 }
 
-.info-title {
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  font-size: 3.5rem;
-  background-color: #ffb6c7;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+.tomorrow-section{
+    grid-area: tomorrow;
+    background-color: #ffd6e7;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 5px;
 }
 
-.info-info {
-  position: relative;
-  font-size: 6rem;
-  font-weight: bold;
-  background-color: #ffb6c7;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+.tomorrow-section img {
+    height: auto;
+    width: auto;
+    object-fit: contain;
 }
 
 .slack-containar {
@@ -340,7 +296,7 @@ body {
 
 .znd-containar img {
     height: auto;
-    width: 150%;
+    width: auto;
     object-fit: contain;
 }
 
