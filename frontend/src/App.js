@@ -16,31 +16,33 @@ import "./App.css";
 //}
 
 function ZndModel() {
-  const modelRef = useRef();
-
-  useEffect(() => {
-    const loader = new FBXLoader();
-    loader.load(
-      "/models/znd-model.fbx", // FBXファイルのパス
-      (object) => {
-        object.traverse((child) => {
-            if (child.isMesh) {
-                child.material = new THREE.MeshStandardMaterial({
-                    color: "#ffffff", // 白色に設定
+    const modelRef = useRef();
+  
+    useEffect(() => {
+        const loader = new FBXLoader();
+        loader.load(
+            "/models/znd-model.fbx", // FBXファイルのパス
+            (object) => {
+                object.traverse((child) => {
+                    if (child.isMesh) {
+                        //child.castShadow = true; // シャドウを有効化
+                        //child.receiveShadow = true; // シャドウの受け取りを有効化
+                        child.material = new THREE.MeshStandardMaterial({
+                            color: "#ffffff", // モデルを白色に設定
+                        });
+                    }
                 });
+                object.scale.set(0.05, 0.05, 0.05); // サイズ調整
+                modelRef.current.add(object);
+            },
+            undefined,
+            (error) => {
+                console.error("Error loading FBX model:", error);
             }
-        });
-        object.scale.set(0.05, 0.05, 0.05); // サイズ調整
-        modelRef.current.add(object);
-      },
-      undefined,
-      (error) => {
-        console.error("Error loading FBX model:", error);
-      }
-    );
-  }, []);
-
-  return <group ref={modelRef} />;
+        );
+    }, []);
+  
+    return <group ref={modelRef} />;
 }
 
 function App() {
@@ -167,7 +169,12 @@ function App() {
             <div className="znd-containar">
                 <div className="znd-section">
                     <Canvas style={{ width: "100%", height: "100%" }}>
-                        <ambientLight intensity={0.001} color="white" />
+                        {/* 環境光 */}
+                        <ambientLight intensity={0.5} color="#ffffff" />
+                        {/* 方向光 */}
+                        <directionalLight position={[5, 10, 5]} intensity={1} />
+                        {/* スポットライト */}
+                        <spotLight position={[15, 20, 10]} angle={0.3} intensity={1.5} castShadow />
                         <ZndModel />
                         <OrbitControls enableZoom={true} />
                     </Canvas>
