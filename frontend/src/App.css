@@ -1,7 +1,9 @@
 /* App.css */
-body {
+html, body {
   margin: 0;
   padding: 0;
+  width: 100%;
+  height: 100%;
   font-family: Arial, sans-serif;
   background-color: #f0f0f0;
 }
@@ -11,10 +13,9 @@ body {
     grid-template-areas:
       "date-time date-time"
       "weather weather"
-      "slack slack"
       "bus schedule"
       "znd znd";
-    grid-template-rows: 2fr 1fr 1fr 1fr 5fr;
+    grid-template-rows: 80fr 80fr 1fr 1fr;
     grid-template-columns: 1fr 1fr;
     height: 100vh;
     width: 100%;
@@ -87,35 +88,13 @@ body {
 
 .seminar-section {
     grid-area: seminar;
-    position: relative;
-    background-color: #d0e1ff;
-    border: 1px solid #ccc;
-    border-radius: 5px;
     display: flex;
     justify-content: center; /* 縦方向の中央揃え */
-    align-items: flex-end;
+    align-items: center;
     text-align: center;
-}
-
-.seminar-title {
-    grid-area: seminar;
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    font-size: 3em;
-    font-weight: bold;
-    background-color: #b0c1ff;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-.seminar-date {
-    position: absolute;
-    top: 100px;
-    left: 30px;
     font-size: 4rem;
     font-weight: bold;
-    background-color: #b0c1ff;
+    background-color: #d0e1ff;
     border: 1px solid #ccc;
     border-radius: 5px;
 }
@@ -126,8 +105,8 @@ body {
     grid-template-areas:
       "rain tomorrow"
       "info tomorrow";
-    grid-template-rows: 10fr 1fr;
-    grid-template-columns: 7fr 1fr;
+    grid-template-rows: 9fr 1fr;
+    grid-template-columns: 4fr 1fr;
     gap: 10px;
     background-color: #ffd6e7;
     padding: 10px;
@@ -140,6 +119,7 @@ body {
 .rain-section{
     grid-area: rain;
     background-color: #ffd6e7;
+    font-size: 15rem;
     box-sizing: border-box;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -162,26 +142,16 @@ body {
 }
 
 .tomorrow-section img {
-    height: auto;
+    height: 100%;
     width: auto;
     object-fit: contain;
 }
 
-.slack-containar {
-  grid-area: slack;
-  display: grid;
-  gap: 10px;
-  background-color: #ffccff;
-  padding: 10px;
-  box-sizing: border-box;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
 
 .bus-containar {
     grid-area: bus;
     display: grid;
-    grid-template-rows: 1.5fr 1fr 1fr 1fr;
+    grid-template-rows: 1.5fr 1fr 1fr;
     background-color: #ccffff;
     padding: 10px;
     box-sizing: border-box;
@@ -283,9 +253,12 @@ body {
 
 .znd-containar {
     grid-area: znd;
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
+    display: grid;
+    grid-template-areas:
+      "news news" 
+      "info zndi";
+    grid-template-rows: 2fr 6fr;
+    grid-template-columns: 4fr 1fr;
     gap: 10px;
     background-color: #ccffcc;
     padding: 10px;
@@ -294,9 +267,46 @@ body {
     border-radius: 5px;
 }
 
-.znd-containar img {
-    height: auto;
+.znd-image {
+    grid-area: zndi;
+    height: 100%;
     width: auto;
     object-fit: contain;
 }
 
+.news-section {
+    grid-area: news;
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+    /*grid-template-columns: 1fr 1fr 1fr;*/
+    gap: 10px;
+    background-color: #aaffaa;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.news {
+    display: grid;
+    gap: 10px;
+    background-color: #aaffaa;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.news strong {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.news p {
+    font-size: 1rem; /* 説明文のフォントサイズ */
+    margin: 0; /* 余白をリセット */
+    color: #666; /* 説明文の文字色 */
+    line-height: 1.5; /* 行間を調整 */
+}

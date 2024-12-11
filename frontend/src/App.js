@@ -53,6 +53,8 @@ function App() {
 
         // 1秒ごとに日付と時刻を更新
         const timer = setInterval(updateDateTime, 1000);
+        // 1分ごとに実行
+        const interval = setInterval(fetchRSS, 60000);
 
         // クリーンアップ
         return () => clearInterval(timer);
@@ -66,8 +68,7 @@ function App() {
                 </div>
                 <div className="time-section">{time}</div>
                 <div className="seminar-section">
-                    <div className="seminar-title">ゼミ</div>
-                    <div className="seminar-date">12月02日10時～</div>
+                    12月02日10時～
                 </div>
             </div>
             <div className="weather-container">
@@ -80,14 +81,6 @@ function App() {
                 <div className="tomorrow-section">
                     <img src="/icons/sun.svg" alt="晴れ"/>
                 </div>
-            </div>
-            <div className="slack-containar">
-                    {articles.map((article, index) => (
-                        <div key={index} style={{ marginBottom: '20px', borderBottom: '1px solid #ccc', paddingBottom: '10px' }}>
-                            {article.title}
-                            {article.description}
-                        </div>
-                    ))}
             </div>
                 <div className="bus-containar">
                     <div className="bus-next">
@@ -130,6 +123,15 @@ function App() {
                 </div>
             </div>
             <div className="znd-containar">
+                <img src="/icons/znd.png" alt="ずんだもん" className="znd-image" />
+                <div className="news-section">
+                    {articles.map((article, index) => (
+                        <div  className="news" key={index} style={{ borderBottom: '1px solid #ccc', paddingBottom: '10px' }}>
+                            <strong>{article.title}</strong>
+                            <p>{article.description}</p>
+                        </div>
+                    ))}
+                </div>
             </div>
         </div>
     );
