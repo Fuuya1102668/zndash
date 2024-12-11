@@ -1,11 +1,46 @@
-import React, { useState, useEffect } from "react";
-import { Canvas } from "@react-three/fiber";
-import { OrbitControls, useGLTF } from "@react-three/drei";
+//import React, { useState, useEffect } from "react";
+//import { Canvas } from "@react-three/fiber";
+//import { OrbitControls, useGLTF } from "@react-three/drei";
+//import "./App.css";
+
+import React, { useState, useEffect, useRef, } from "react";
+import { Canvas, useFrame } from "@react-three/fiber";
+import { OrbitControls } from "@react-three/drei";
+import * as THREE from "three";
+import { FBXLoader } from "three/examples/jsm/loaders/FBXLoader";
 import "./App.css";
 
+//function ZndModel() {
+//     const { scene } = useGLTF("/models/znd-model.glb"); // 3Dモデルのパス
+//     return <primitive object={scene} scale={2} />;
+//}
+
 function ZndModel() {
-     const { scene } = useGLTF("/models/znd-model.glb"); // 3Dモデルのパス
-     return <primitive object={scene} scale={2} />;
+  const modelRef = useRef();
+
+  useEffect(() => {
+    const loader = new FBXLoader();
+    loader.load(
+      "/models/znd-model.fbx", // FBXファイルのパス
+      (object) => {
+        object.traverse((child) => {
+            if (child.isMesh) {
+                child.material = new THREE.MeshStandardMaterial({
+                    color: "#ffffff", // 白色に設定
+                });
+            }
+        });
+        object.scale.set(0.05, 0.05, 0.05); // サイズ調整
+        modelRef.current.add(object);
+      },
+      undefined,
+      (error) => {
+        console.error("Error loading FBX model:", error);
+      }
+    );
+  }, []);
+
+  return <group ref={modelRef} />;
 }
 
 function App() {
@@ -132,8 +167,7 @@ function App() {
             <div className="znd-containar">
                 <div className="znd-section">
                     <Canvas style={{ width: "100%", height: "100%" }}>
-                        <ambientLight intensity={0.5} />
-                        <directionalLight position={[10, 10, 5]} intensity={1} />
+                        <ambientLight intensity={0.001} color="white" />
                         <ZndModel />
                         <OrbitControls enableZoom={true} />
                     </Canvas>

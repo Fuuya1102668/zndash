@@ -15,7 +15,7 @@ html, body {
       "weather weather"
       "bus schedule"
       "znd znd";
-    grid-template-rows: 80fr 80fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 3fr;
     grid-template-columns: 1fr 1fr;
     height: 100vh;
     width: 100%;
@@ -27,30 +27,30 @@ html, body {
 
 /* 各セクションの共通スタイル */
 .section {
-  border: 1px solid #ccc;
-  margin: 5px 0;
-  padding: 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  font-size: 1.5rem;
-}
+    border: 1px solid #ccc;
+    margin: 5px 0;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 1.5rem;
+  }
 
 .date-time-container {
-  grid-area: date-time;
-  display: grid;
-  grid-template-areas:
-    "date time"
-    "seminar time";
-  grid-template-rows: 1fr 1fr;
-  grid-template-columns: 1fr 1.5fr;
-  gap: 10px;
-  background-color: #e6f7ff;
-  padding: 10px;
-  box-sizing: border-box;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+    grid-area: date-time;
+    display: grid;
+    grid-template-areas:
+      "date time"
+      "seminar time";
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 10px;
+    background-color: #e6f7ff;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 5px;
 }
 
 .date-section {
@@ -83,8 +83,7 @@ html, body {
     align-items: center;
     background-color: #d0e1ff;
     border: 1px solid #ccc;
-    border-radius: 5px;
-}
+    border-radius: 5px; }
 
 .seminar-section {
     grid-area: seminar;
@@ -142,8 +141,8 @@ html, body {
 }
 
 .tomorrow-section img {
-    height: 100%;
-    width: auto;
+    height: auto;
+    width: 100%;
     object-fit: contain;
 }
 
@@ -268,15 +267,22 @@ html, body {
 }
 
 .znd-section {
-    grid-area: znd;
-    background-color: #ccffcc;
+    width: 80%; /* セクションの幅 */
+    height: 80%; /* セクションの高さ */
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: #aaffaa;
+    padding: 10px;
+    box-sizing: border-box;
     border: 1px solid #ccc;
     border-radius: 5px;
-    overflow: hidden;
-    height: 100%; /* セクション全体を埋める */
+}
+
+.canvas {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
 }
 
 .news-section {
