@@ -58,9 +58,10 @@ touch index.js
 ```
 
 ```
-npm start
+npm install three-mesh-bvh@0.8.0
+npm install react@18.3.1 react-dom@18.3.1
+npm install @react-three/fiber@latest @react-three/drei@latest three@latest
 ```
-
 
 ### ディレクトリ構成
 ```
