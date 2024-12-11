@@ -1,5 +1,12 @@
 import React, { useState, useEffect } from "react";
+import { Canvas } from "@react-three/fiber";
+import { OrbitControls, useGLTF } from "@react-three/drei";
 import "./App.css";
+
+function ZndModel() {
+     const { scene } = useGLTF("/models/znd-model.glb"); // 3Dモデルのパス
+     return <primitive object={scene} scale={2} />;
+}
 
 function App() {
     const [year, setYear] = useState("");
@@ -123,7 +130,14 @@ function App() {
                 </div>
             </div>
             <div className="znd-containar">
-                <img src="/icons/znd.png" alt="ずんだもん" className="znd-image" />
+                <div className="znd-section">
+                    <Canvas style={{ width: "100%", height: "100%" }}>
+                        <ambientLight intensity={0.5} />
+                        <directionalLight position={[10, 10, 5]} intensity={1} />
+                        <ZndModel />
+                        <OrbitControls enableZoom={true} />
+                    </Canvas>
+                </div>
                 <div className="news-section">
                     {articles.map((article, index) => (
                         <div  className="news" key={index} style={{ borderBottom: '1px solid #ccc', paddingBottom: '10px' }}>

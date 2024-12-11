@@ -267,11 +267,16 @@ html, body {
     border-radius: 5px;
 }
 
-.znd-image {
-    grid-area: zndi;
-    height: 100%;
-    width: auto;
-    object-fit: contain;
+.znd-section {
+    grid-area: znd;
+    background-color: #ccffcc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    overflow: hidden;
+    height: 100%; /* セクション全体を埋める */
 }
 
 .news-section {
