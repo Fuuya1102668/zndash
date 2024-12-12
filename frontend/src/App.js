@@ -17,24 +17,23 @@ import "./App.css";
 
 function ZndModel() {
     const modelRef = useRef();
+    const mixerRef = useRef();
   
     useEffect(() => {
         const loader = new FBXLoader();
         loader.load(
             "/models/znd-model.fbx", // FBXファイルのパス
             (object) => {
-                object.traverse((child) => {
-                    if (child.isMesh) {
-                        child.castShadow = true; // シャドウを有効化
-                        child.receiveShadow = true; // シャドウの受け取りを有効化
-                        //child.material = new THREE.MeshStandardMaterial({
-                        //    color: "#ffffff", // モデルを白色に設定
-                        //});
-                    }
-                });
                 object.scale.set(0.05, 0.05, 0.05); // サイズ調整
-                object.position.set(0, -2, 0); // モデル全体を下に移動
+                object.position.set(0, -4, -4); // モデル全体を下に移動
                 modelRef.current.add(object);
+                // アニメーションのセットアップ
+                if (object.animations.length > 0) {
+                    const mixer = new THREE.AnimationMixer(object);
+                    const action = mixer.clipAction(object.animations[0]); // 最初のアニメーションを再生
+                    action.play();
+                    mixerRef.current = mixer;
+                }
             },
             undefined,
             (error) => {
@@ -42,6 +41,11 @@ function ZndModel() {
             }
         );
     }, []);
+        useFrame((_, delta) => {
+        if (mixerRef.current) {
+            mixerRef.current.update(delta); // 毎フレームの更新
+        }
+    });
   
     return <group ref={modelRef} />;
 }
@@ -169,7 +173,10 @@ function App() {
             </div>
             <div className="znd-containar">
                 <div className="znd-section">
-                    <Canvas style={{ width: "100%", height: "100%" }}>
+                    <Canvas 
+                        style={{ width: "100%", height: "100%" }}
+                        camera={{ position: [0, 2, 5], fov:50 }}
+                    >
                         {/* 環境光 */}
                         <ambientLight intensity={0.5} color="#ffffff" />
                         {/* 方向光 */}
@@ -183,7 +190,7 @@ function App() {
                 <div className="news-section">
                     {articles.map((article, index) => (
                         <div  className="news" key={index} style={{ borderBottom: '1px solid #ccc', paddingBottom: '10px' }}>
-                            <strong>{article.title}</strong>
+                            <strong className="news-title">{article.title}</strong>
                             <p>{article.description}</p>
                         </div>
                     ))}
