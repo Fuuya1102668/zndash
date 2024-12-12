@@ -256,7 +256,7 @@ html, body {
     grid-template-areas:
       "news news" 
       "info zndi";
-    grid-template-rows: 2fr 6fr;
+    grid-template-rows: 1fr 4fr;
     grid-template-columns: 1fr 4fr;
     gap: 10px;
     background-color: #ccffcc;
@@ -269,7 +269,7 @@ html, body {
 .znd-section {
     grid-area: zndi;
     width: 100%; /* セクションの幅 */
-    height: 100%; /* セクションの高さ */
+    height: auto; /* セクションの高さ */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -291,9 +291,7 @@ html, body {
     display: grid;
     grid-template-rows: 1fr 1fr 1fr;
     /*grid-template-columns: 1fr 1fr 1fr;*/
-    gap: 10px;
     background-color: #aaffaa;
-    padding: 10px;
     box-sizing: border-box;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -309,23 +307,24 @@ html, body {
     border-radius: 5px;
 }
 
-.news strong {
-    font-size: 2rem;
+.news-title {
+    white-space: nowrap;       /* テキストを1行に制限 */
+    overflow: hidden;          /* 溢れるテキストを非表示 */
+    text-overflow: ellipsis;   /* 省略記号を表示 */
+    width: 100%;               /* 必要に応じて幅を調整 */
+    font-size: 1.5rem;
     font-weight: bold;
-    margin-bottom: 10px;
     display: block;
 }
 
-.news-title {
-  white-space: nowrap;       /* テキストを1行に制限 */
-  overflow: hidden;          /* 溢れるテキストを非表示 */
-  text-overflow: ellipsis;   /* 省略記号を表示 */
-  width: 100%;               /* 必要に応じて幅を調整 */
-}
-
-.news p {
-    font-size: 1rem; /* 説明文のフォントサイズ */
-    margin: 0; /* 余白をリセット */
+.news-description {
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* 表示する行数を設定 */
+    -webkit-box-orient: vertical;
+    overflow: hidden; /* 溢れたテキストを非表示にする */
+    text-overflow: ellipsis; /* 省略記号を追加 */
     color: #666; /* 説明文の文字色 */
-    line-height: 1.5; /* 行間を調整 */
+    max-height: 3rem; /* 行の高さに合わせて調整 */
+    line-height: 1rem; /* 行間の高さ */
+    font-size: 1rem; /* テキストのサイズ */
 }

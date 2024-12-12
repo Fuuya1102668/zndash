@@ -4,6 +4,9 @@
 //import "./App.css";
 
 import React, { useState, useEffect, useRef, } from "react";
+import RainfallChart from "./RainfallChart";
+import { Bar } from "react-chartjs-2";
+import axios from "axios";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import * as THREE from "three";
@@ -25,8 +28,9 @@ function ZndModel() {
             "/models/znd-model.fbx", // FBXファイルのパス
             (object) => {
                 object.scale.set(0.05, 0.05, 0.05); // サイズ調整
-                object.position.set(0, -4, -4); // モデル全体を下に移動
+                object.position.set(0, -2.5, -4); // モデル全体を下に移動
                 modelRef.current.add(object);
+                modelRef.current.rotation.x -= 0.5; // モデルの回転 
                 // アニメーションのセットアップ
                 if (object.animations.length > 0) {
                     const mixer = new THREE.AnimationMixer(object);
@@ -41,7 +45,7 @@ function ZndModel() {
             }
         );
     }, []);
-        useFrame((_, delta) => {
+    useFrame((_, delta) => {
         if (mixerRef.current) {
             mixerRef.current.update(delta); // 毎フレームの更新
         }
@@ -102,7 +106,7 @@ function App() {
 
         // 1秒ごとに日付と時刻を更新
         const timer = setInterval(updateDateTime, 1000);
-        // 1分ごとに実行
+        // 1分ごとにニュースを取得
         const interval = setInterval(fetchRSS, 60000);
 
         // クリーンアップ
@@ -122,6 +126,7 @@ function App() {
             </div>
             <div className="weather-container">
                 <div className="rain-section">
+                    <RainfallChart />
                     降水量
                 </div>
                 <div className="info-section">
@@ -191,7 +196,7 @@ function App() {
                     {articles.map((article, index) => (
                         <div  className="news" key={index} style={{ borderBottom: '1px solid #ccc', paddingBottom: '10px' }}>
                             <strong className="news-title">{article.title}</strong>
-                            <p>{article.description}</p>
+                            <p className="news-description">{article.description}</p>
                         </div>
                     ))}
                 </div>
