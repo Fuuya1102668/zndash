@@ -267,8 +267,8 @@ html, body {
 }
 
 .znd-section {
-    width: 80%; /* セクションの幅 */
-    height: 80%; /* セクションの高さ */
+    width: 100%; /* セクションの幅 */
+    height: 100%; /* セクションの高さ */
     display: flex;
     justify-content: center;
     align-items: center;

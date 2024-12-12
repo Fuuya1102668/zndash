@@ -25,14 +25,15 @@ function ZndModel() {
             (object) => {
                 object.traverse((child) => {
                     if (child.isMesh) {
-                        //child.castShadow = true; // シャドウを有効化
-                        //child.receiveShadow = true; // シャドウの受け取りを有効化
-                        child.material = new THREE.MeshStandardMaterial({
-                            color: "#ffffff", // モデルを白色に設定
-                        });
+                        child.castShadow = true; // シャドウを有効化
+                        child.receiveShadow = true; // シャドウの受け取りを有効化
+                        //child.material = new THREE.MeshStandardMaterial({
+                        //    color: "#ffffff", // モデルを白色に設定
+                        //});
                     }
                 });
                 object.scale.set(0.05, 0.05, 0.05); // サイズ調整
+                object.position.set(0, -2, 0); // モデル全体を下に移動
                 modelRef.current.add(object);
             },
             undefined,
