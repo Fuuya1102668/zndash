@@ -13,7 +13,7 @@ const PORT = 5000;
 // CORSを有効化
 app.use(cors());
 
-// APIエンドポイントを作成
+// ITmedisのニュースのエンドポイント
 app.get('/api/rss', async (req, res) => {
   try {
     const feed = await parser.parseURL('https://rss.itmedia.co.jp/rss/2.0/news_bursts.xml');
@@ -91,6 +91,7 @@ app.get("/api/weather", async (req, res) => {
     }
 });
 
+//バスの時刻表を取得するエンドポイント
 app.get("/api/bus-schedule", (req, res) => {
     const filePath = path.join(__dirname, "bus-schedule.json");
 
@@ -124,6 +125,18 @@ app.get("/api/bus-schedule", (req, res) => {
 app.get("/api/schedule", (req, res) => {
     try {
         const data = fs.readFileSync("./schedule.json", "utf-8");
+        const schedule = JSON.parse(data);
+        res.json(schedule);
+    } catch (error) {
+        console.error("Error reading schedule.json:", error);
+        res.status(500).json({ error: "Failed to fetch schedule" });
+    }
+});
+
+// ゼミの日程を取得
+app.get("/api/seminar", (req, res) => {
+    try {
+        const data = fs.readFileSync("./seminar.json", "utf-8");
         const schedule = JSON.parse(data);
         res.json(schedule);
     } catch (error) {
