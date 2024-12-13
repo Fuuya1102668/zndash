@@ -202,6 +202,44 @@ function App() {
                 console.error("Error fetching schedule data:", error);
             }
         };
+        const fetchSeminarSchedule = async () => {
+            try {
+                const response = await fetch("http://localhost:5000/api/seminar");
+                const data = await response.json();
+
+                // 現在の日付と時刻を取得
+                const now = new Date();
+                const currentMonthDay = parseInt(
+                    `${String(now.getMonth() + 1).padStart(2, "0")}${String(now.getDate()).padStart(2, "0")}`
+                );
+                const currentTime = now.getHours() * 100 + now.getMinutes();
+
+                // 最も近いゼミを取得
+                const upcoming = data
+                    .map((item) => {
+                        const seminarMonthDay = parseInt(item.date.slice(0, 4));
+                        const seminarTime = parseInt(item.date.slice(4, 6)) * 100;
+                        const isToday = seminarMonthDay === currentMonthDay;
+
+                        return {
+                            fullDate: item.date,
+                            displayDate: `${parseInt(item.date.slice(0, 2))}月${parseInt(item.date.slice(2, 4))}日${item.date.slice(4, 6)}時〜`,
+                            isUpcoming: seminarMonthDay > currentMonthDay || (isToday && seminarTime >= currentTime),
+                        };
+                    })
+                    .filter((item) => item.isUpcoming)
+                    .sort((a, b) => a.fullDate - b.fullDate);
+
+                if (upcoming.length > 0) {
+                    setNextSeminar(upcoming[0].displayDate);
+                } else {
+                    setNextSeminar("予定なし");
+                }
+            } catch (error) {
+                console.error("Error fetching seminar schedule:", error);
+                setNextSeminar("取得エラー");
+            }
+        };
 
 
         // 初回実行
@@ -211,6 +249,7 @@ function App() {
         fetchBusSchedule();
         updateNextBuses(busSchedule);
         fetchSchedule();
+        fetchSeminarSchedule();
 
         // 1秒ごとに日付と時刻を更新
         const dateTimerInterval = setInterval(updateDateTime, 1000);
@@ -220,12 +259,15 @@ function App() {
         const busInterval = setInterval(() => {
             updateNextBuses(busSchedule);
         }, 60000);
+        // 1分ごとに次回のゼミの予定を取得
+        const seminarInterval = setInterval(fetchSeminarSchedule(), 6000);
 
         // クリーンアップ
         return () => {
             clearInterval(dateTimerInterval);
             clearInterval(rssInterval);
             clearInterval(busInterval);
+            clearInterval(seminarInterval);
         };
     }, [busSchedule]);
 
@@ -244,7 +286,7 @@ function App() {
                 </div>
                 <div className="time-section">{time}</div>
                 <div className="seminar-section">
-                    12月02日10時～
+                    {nextSeminar}
                 </div>
             </div>
             <div className="weather-container">
@@ -284,10 +326,12 @@ function App() {
             <div className="schedule-containar">
                 {futureSchedules.map((schedule, index) => (
                     <div className="schedule-section" key={index}>
-                        <div className="schedule-date">{formatDate(schedule.date)}</div>
-                        <div className="schedule-sentence">{schedule.content}</div>
+                        <div className="schedule-date">{formatDate(schedule.date)}  {schedule.content}</div>
                     </div>
                 ))}
+            </div>
+            <div className="tkg-containar">
+                tkg
             </div>
             <div className="znd-containar">
                 <div className="znd-section">

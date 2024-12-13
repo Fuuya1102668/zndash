@@ -14,14 +14,14 @@ html, body {
       "date-time date-time"
       "weather weather"
       "bus schedule"
+      "bus tkg"
       "znd znd";
-    grid-template-rows: 1fr 1.5fr 1fr 5fr;
+    grid-template-rows: 1fr 1.5fr 1fr 0.5fr 5fr;
     grid-template-columns: 1fr 1fr;
     height: 100vh;
     width: 100%;
     max-width: 3440px;
     margin: 0 auto;
-    background-color: white;
     box-sizing: border-box;
 }
 
@@ -46,7 +46,6 @@ html, body {
     grid-template-rows: 1fr 1fr;
     grid-template-columns: 1fr 1.5fr;
     gap: 10px;
-    background-color: #e6f7ff;
     padding: 10px;
     box-sizing: border-box;
     border: 1px solid #ccc;
@@ -61,7 +60,6 @@ html, body {
     align-items: center;
     font-size: 3rem;
     font-weight: bold;
-    background-color: #d0e1ff;
     border: 1px solid #ccc;
     border-radius: 5px;
 }
@@ -69,7 +67,6 @@ html, body {
 .month-section {
     font-size: 6rem;
     font-weight: bold;
-    background-color: #b0c1ff;
     border: 1px solid #ccc;
     border-radius: 5px;
 }
@@ -81,7 +78,6 @@ html, body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #d0e1ff;
     border: 1px solid #ccc;
     border-radius: 5px; }
 
@@ -93,7 +89,6 @@ html, body {
     text-align: center;
     font-size: 4rem;
     font-weight: bold;
-    background-color: #d0e1ff;
     border: 1px solid #ccc;
     border-radius: 5px;
 }
@@ -105,7 +100,6 @@ html, body {
       "today tomorrow";
     grid-template-columns: 3fr 1fr;
     gap: 10px;
-    background-color: #ffd6e7;
     padding: 10px;
     box-sizing: border-box;
     border: 1px solid #ccc;
@@ -119,7 +113,6 @@ html, body {
       "rainfallchart"
       "info";
     grid-template-rows: 3fr 1fr;
-    background-color: #ffd6e7;
     box-sizing: border-box;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -130,7 +123,6 @@ html, body {
 
 .rainfallchart{
     grid-area: rainfallchart;
-    background-color: #ffd6e7;
     box-sizing: border-box;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -138,7 +130,6 @@ html, body {
 
 .info {
     grid-area: info;
-    background-color: #ffd6e7;
     box-sizing: border-box;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -153,7 +144,6 @@ html, body {
       "rain-chance rain-chance";
     grid-template-rows: 3fr 1fr 1fr;
     grid-template-columns: 1fr 1fr;
-    background-color: #ffd6e7;
     box-sizing: border-box;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -161,7 +151,6 @@ html, body {
 
 .icon {
     grid-area: icon;
-    background-color: #ffd6e7;
     box-sizing: border-box;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -177,7 +166,6 @@ html, body {
 .min ,
 .rain-chance {
     font-size: 4rem;
-    background-color: #ffd6e7;
     box-sizing: border-box;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -204,7 +192,6 @@ html, body {
     grid-area: bus;
     display: grid;
     grid-template-rows: 1.5fr 1fr 1fr;
-    background-color: #ccffff;
     padding: 10px;
     box-sizing: border-box;
     border: 1px solid #ccc;
@@ -216,7 +203,6 @@ html, body {
     grid-template-areas:
         "time remain";
     grid-template-columns: 1.5fr 1fr;
-    background-color: #aaffff;
     font-weight: bold;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -235,7 +221,6 @@ html, body {
     display: flex;
     justify-content: lest;
     align-items: flex-end;
-    background-color: #aaffff;
     font-weight: bold;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -254,7 +239,6 @@ html, body {
     display: flex;
     justify-content: right;
     align-items: flex-end;
-    background-color: #aaffff;
     font-weight: bold;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -264,7 +248,6 @@ html, body {
     grid-area: schedule;
     display: grid;
     gap: 10px;
-    background-color: #ffffcc;
     padding: 10px;
     box-sizing: border-box;
     border: 1px solid #ccc;
@@ -273,32 +256,37 @@ html, body {
 
 .schedule-section{
     display: grid;
-    grid-area: 
+/*    grid-area: 
         "date"
         "sentence";
-    grid-template-rows: 1fr 2fr;
-    background-color: #ffffcc;
+    grid-template-rows: 1fr 1fr;*/
     box-sizing: border-box;
     border: 1px solid #ccc;
     border-radius: 5px;
 }
 
 .schedule-date{
-    grid: date;
+/*    grid: date;*/
     display: flex;
     align-items: flex-end;
     font-size: 2rem;
-    background-color: #ffffaa;
     font-weight: bold;
     border: 1px solid #ccc;
     border-radius: 5px;
 }
 
-.schedule-sentence{
+
+/*.schedule-sentence{
     grid: sentence;
     font-size: 2rem;
-    background-color: #ffffaa;
     font-weight: bold;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}*/
+
+.tkg-containar {
+    grid-area: tkg;
+    box-sizing: border-box;
     border: 1px solid #ccc;
     border-radius: 5px;
 }
@@ -312,7 +300,6 @@ html, body {
     grid-template-rows: 1fr 4fr;
     grid-template-columns: 0fr 4fr;
     gap: 10px;
-    background-color: #ccffcc;
     padding: 10px;
     box-sizing: border-box;
     border: 1px solid #ccc;
@@ -326,7 +313,6 @@ html, body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #aaffaa;
     padding: 10px;
     box-sizing: border-box;
     border: 1px solid #ccc;
@@ -344,7 +330,6 @@ html, body {
     display: grid;
     grid-template-rows: 1fr 1fr 1fr;
     /*grid-template-columns: 1fr 1fr 1fr;*/
-    background-color: #aaffaa;
     box-sizing: border-box;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -353,7 +338,6 @@ html, body {
 .news {
     display: grid;
     gap: 10px;
-    background-color: #aaffaa;
     padding: 10px;
     box-sizing: border-box;
     border: 1px solid #ccc;
