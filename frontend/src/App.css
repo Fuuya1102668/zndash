@@ -15,7 +15,7 @@ html, body {
       "weather weather"
       "bus schedule"
       "znd znd";
-    grid-template-rows: 1fr 1fr 1fr 3fr;
+    grid-template-rows: 1fr 1.5fr 1fr 5fr;
     grid-template-columns: 1fr 1fr;
     height: 100vh;
     width: 100%;
@@ -102,29 +102,41 @@ html, body {
     grid-area: weather;
     display: grid;
     grid-template-areas:
-      "rain tomorrow"
-      "info tomorrow";
-    grid-template-rows: 9fr 1fr;
-    grid-template-columns: 4fr 1fr;
+      "today tomorrow";
+    grid-template-columns: 3fr 1fr;
     gap: 10px;
     background-color: #ffd6e7;
     padding: 10px;
     box-sizing: border-box;
     border: 1px solid #ccc;
     border-radius: 5px;
-    overflow: hidden;
 }
 
-.rain-section{
-    grid-area: rain;
+.today-section{
+    grid-area: today;
+    display: grid;
+    grid-template-areas:
+      "rainfallchart"
+      "info";
+    grid-template-rows: 3fr 1fr;
     background-color: #ffd6e7;
-    font-size: 15rem;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    overflow: hidden; /* はみ出し防止 */
+    height: auto; /* セクション全体を占める */
+    width: 100%; /* セクション全体を占める */
+}
+
+.rainfallchart{
+    grid-area: rainfallchart;
+    background-color: #ffd6e7;
     box-sizing: border-box;
     border: 1px solid #ccc;
     border-radius: 5px;
 }
 
-.info-section {
+.info {
     grid-area: info;
     background-color: #ffd6e7;
     box-sizing: border-box;
@@ -134,16 +146,57 @@ html, body {
 
 .tomorrow-section{
     grid-area: tomorrow;
+    display: grid;
+    grid-template-areas:
+      "icon icon"
+      "max min"
+      "rain-chance rain-chance";
+    grid-template-rows: 3fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
     background-color: #ffd6e7;
     box-sizing: border-box;
     border: 1px solid #ccc;
     border-radius: 5px;
 }
 
-.tomorrow-section img {
+.icon {
+    grid-area: icon;
+    background-color: #ffd6e7;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.icon img {
     height: auto;
     width: 100%;
     object-fit: contain;
+}
+
+.max, 
+.min ,
+.rain-chance {
+    font-size: 4rem;
+    background-color: #ffd6e7;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    text-align: right; /* 文字を右寄せ */
+    align-self: end; /* 縦方向で下に配置 */
+    justify-self: end; /* 横方向で右に配置 */
+}
+
+.max {
+    grid-area: max;
+}
+
+.min {
+    grid-area: min;
+}
+
+.rain-chance {
+    grid-area: rain-chance;
+    font-size: 5rem;
 }
 
 
@@ -257,7 +310,7 @@ html, body {
       "news news" 
       "info zndi";
     grid-template-rows: 1fr 4fr;
-    grid-template-columns: 1fr 4fr;
+    grid-template-columns: 0fr 4fr;
     gap: 10px;
     background-color: #ccffcc;
     padding: 10px;

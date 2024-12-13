@@ -61,6 +61,19 @@ function App() {
     const [time, setTime] = useState("");
     const [nextSeminar, setNextSeminar] = useState("12月02日");
     const [articles, setArticles] = useState([]);
+    const [weatherData, setWeatherData] = useState({
+        todayWeather: "",
+        tomorrowWeather: "",
+        maxTemp: "",
+        minTemp: "",
+        averageRainChance: "",
+    });
+    const [busSchedule, setBusSchedule] = useState([]);
+    const [nextBus, setNextBus] = useState(null);
+    const [upcomingBuses, setUpcomingBuses] = useState([]);
+    const [schedules, setSchedules] = useState([]);
+    const [futureSchedules, setFutureSchedules] = useState([]);
+
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
@@ -98,20 +111,130 @@ function App() {
             } finally {
                 setLoading(false);
             }
-        };      
+        };
+        const fetchWeatherData = async () => {
+            try {
+                const response = await axios.get("http://localhost:5000/api/weather");
+                setWeatherData(response.data);
+            } catch (err) {
+                console.error("Error fetching weather data:", err);
+                setError("天気情報を取得できませんでした。");
+            }
+        };
+        const fetchBusSchedule = async () => {
+            try {
+                const response = await fetch("http://localhost:5000/api/bus-schedule");
+                const data = await response.json();
+                setBusSchedule(data);
+            } catch (error) {
+                console.error("Error fetching bus schedule:", error);
+            }
+        };
+        const updateNextBuses = (schedule) => {
+            const now = new Date();
+            const currentTime = now.getHours() * 60 + now.getMinutes(); // 分単位に変換
+        
+            const upcoming = schedule.filter((bus) => {
+                const [hours, minutes] = bus.time.split(":").map(Number);
+                const busTimeInMinutes = hours * 60 + minutes;
+                return busTimeInMinutes >= currentTime;
+            });
+        
+            if (upcoming.length > 0) {
+                const formatRemainTime = (busTimeInMinutes) => {
+                    const remain = busTimeInMinutes - currentTime;
+                    const hours = Math.floor(remain / 60).toString().padStart(2, "0");
+                    const minutes = (remain % 60).toString().padStart(2, "0");
+                    return `${hours}:${minutes}`;
+                };
+        
+                // 次のバス
+                const [nextBusHours, nextBusMinutes] = upcoming[0].time.split(":").map(Number);
+                const nextBusTimeInMinutes = nextBusHours * 60 + nextBusMinutes;
+                setNextBus({
+                    ...upcoming[0],
+                    remain: formatRemainTime(nextBusTimeInMinutes),
+                });
+        
+                // 次の2つのバス
+                setUpcomingBuses(
+                    upcoming.slice(1, 3).map((bus) => {
+                        const [hours, minutes] = bus.time.split(":").map(Number);
+                        const busTimeInMinutes = hours * 60 + minutes;
+                        return {
+                            ...bus,
+                            remain: formatRemainTime(busTimeInMinutes),
+                        };
+                    })
+                );
+            } else {
+                setNextBus(null);
+                setUpcomingBuses([]);
+            }
+        };
+        const fetchSchedule = async () => {
+            try {
+                const response = await fetch("http://localhost:5000/api/schedule");
+                const data = await response.json();
+
+                // 現在の日付を取得
+                const today = new Date();
+                const currentYear = today.getFullYear();
+                const todayMonth = today.getMonth() + 1; // 月は0始まりなので+1
+                const todayDay = today.getDate();
+                const formattedToday = parseInt(`${String(todayMonth).padStart(2, "0")}${String(todayDay).padStart(2, "0")}`);
+
+                // 跨年に対応した未来の予定を取得
+                const upcoming = data.filter((item) => {
+                    const itemMonthDay = parseInt(item.date);
+                    const itemYear = itemMonthDay < formattedToday ? currentYear + 1 : currentYear; // 年を跨ぐ場合
+
+                    // 比較用に現在の年月と予定の年月を組み立て
+                    const todayYMD = parseInt(`${currentYear}${String(todayMonth).padStart(2, "0")}${String(todayDay).padStart(2, "0")}`);
+                    const itemYMD = parseInt(`${itemYear}${String(itemMonthDay).padStart(4, "0")}`);
+
+                    return itemYMD >= todayYMD;
+                });
+
+                // 未来の予定を3件だけ取得
+                setFutureSchedules(upcoming.slice(0, 3));
+            } catch (error) {
+                console.error("Error fetching schedule data:", error);
+            }
+        };
+
 
         // 初回実行
         updateDateTime();
         fetchRSS();
+        fetchWeatherData();
+        fetchBusSchedule();
+        updateNextBuses(busSchedule);
+        fetchSchedule();
 
         // 1秒ごとに日付と時刻を更新
-        const timer = setInterval(updateDateTime, 1000);
+        const dateTimerInterval = setInterval(updateDateTime, 1000);
         // 1分ごとにニュースを取得
-        const interval = setInterval(fetchRSS, 60000);
+        const rssInterval = setInterval(fetchRSS, 60000);
+        // 1分ごとに次のバスを更新
+        const busInterval = setInterval(() => {
+            updateNextBuses(busSchedule);
+        }, 60000);
 
         // クリーンアップ
-        return () => clearInterval(timer);
-    }, []);
+        return () => {
+            clearInterval(dateTimerInterval);
+            clearInterval(rssInterval);
+            clearInterval(busInterval);
+        };
+    }, [busSchedule]);
+
+    // 日付を整形する関数
+    const formatDate = (yymm) => {
+        const month = yymm.slice(0, 2);
+        const day = yymm.slice(2, 4);
+        return `${parseInt(month)}月${parseInt(day)}日`;
+    };
 
     return (
         <div className="container">
@@ -125,56 +248,46 @@ function App() {
                 </div>
             </div>
             <div className="weather-container">
-                <div className="rain-section">
-                    <RainfallChart />
-                    降水量
-                </div>
-                <div className="info-section">
-                    晴れ　時々　雨
+                <div className="today-section">
+                    <div className="rainfallchart">
+                        <RainfallChart />
+                    </div>
+                    <div className="info">
+                        {weatherData.todayWeather}
+                    </div>
                 </div>
                 <div className="tomorrow-section">
-                    <img src="/icons/sun.svg" alt="晴れ"/>
+                    <div className="icon">
+                        <img src="/icons/sun.svg" alt="晴れ"/>
+                    </div>
+                    <div className="max">{weatherData.maxTemp}℃</div>
+                    <div className="min">{weatherData.minTemp}℃</div>
+                    <div className="rain-chance">{weatherData.averageRainChance}</div>
                 </div>
             </div>
                 <div className="bus-containar">
                     <div className="bus-next">
-                        <div className="bus-ntime">17:10</div>
-                        <div className="bus-nremain">00:00</div>
+                        <div className="bus-ntime">
+                            {nextBus ? nextBus.time : "なし"}
+                        </div>
+                        <div className="bus-nremain">
+                            {nextBus ? nextBus.remain : ""}
+                        </div>
                     </div>
-                    <div className="bus-next">
-                        <div className="bus-time">17:40</div>
-                        <div className="bus-remain">00:30</div>
-                    </div>
-                    <div className="bus-next">
-                        <div className="bus-time">18:30</div>
-                        <div className="bus-remain">01:20</div>
-                    </div>
+                    {upcomingBuses.map((bus, index) => (
+                        <div className="bus-next" key={index}>
+                            <div className="bus-time">{bus.time}</div>
+                            <div className="bus-remain">{bus.remain}</div>
+                        </div>
+                    ))}
                 </div>
             <div className="schedule-containar">
-                <div className="schedule-section">
-                    <div className="schedule-date">
-                        01月08日
+                {futureSchedules.map((schedule, index) => (
+                    <div className="schedule-section" key={index}>
+                        <div className="schedule-date">{formatDate(schedule.date)}</div>
+                        <div className="schedule-sentence">{schedule.content}</div>
                     </div>
-                    <div className="schedule-sentence">
-                        月曜授業
-                    </div>
-                </div>
-                <div className="schedule-section">
-                    <div className="schedule-date">
-                        01月22日
-                    </div>
-                    <div className="schedule-sentence">
-                        PD3予稿・本文提出 
-                    </div>
-                </div>
-                <div className="schedule-section">
-                    <div className="schedule-date">
-                        02月14日
-                    </div>
-                    <div className="schedule-sentence">
-                        PD3公開審査会
-                    </div>
-                </div>
+                ))}
             </div>
             <div className="znd-containar">
                 <div className="znd-section">
