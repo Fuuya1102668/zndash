@@ -25,7 +25,7 @@ function ZndModel() {
     useEffect(() => {
         const loader = new FBXLoader();
         loader.load(
-            "/models/znd-model.fbx", // FBXファイルのパス
+            "/models/znd-model_tex.fbx", // FBXファイルのパス
             (object) => {
                 object.scale.set(0.05, 0.05, 0.05); // サイズ調整
                 object.position.set(0, -2.5, -4); // モデル全体を下に移動
@@ -267,7 +267,7 @@ function App() {
             clearInterval(dateTimerInterval);
             clearInterval(rssInterval);
             clearInterval(busInterval);
-            clearInterval(seminarInterval);
+//            clearInterval(seminarInterval);
         };
     }, [busSchedule]);
 
