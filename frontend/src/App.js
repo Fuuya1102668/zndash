@@ -18,6 +18,7 @@ import "./App.css";
 //     return <primitive object={scene} scale={2} />;
 //}
 
+const ipaddr = "202.13.169.105"
 function ZndModel() {
     const modelRef = useRef();
     const mixerRef = useRef();
@@ -100,7 +101,7 @@ function App() {
         };
         const fetchRSS = async () => {
             try {
-                const response = await fetch('http://localhost:5000/api/rss'); // バックエンドのAPIを呼び出す
+                const response = await fetch('http://202.13.169.105:5000/api/rss'); // バックエンドのAPIを呼び出す
                 if (!response.ok) {
                     throw new Error('Failed to fetch RSS data');
                 }
@@ -114,7 +115,7 @@ function App() {
         };
         const fetchWeatherData = async () => {
             try {
-                const response = await axios.get("http://localhost:5000/api/weather");
+                const response = await axios.get("http://202.13.169.105:5000/api/weather");
                 setWeatherData(response.data);
             } catch (err) {
                 console.error("Error fetching weather data:", err);
@@ -123,7 +124,7 @@ function App() {
         };
         const fetchBusSchedule = async () => {
             try {
-                const response = await fetch("http://localhost:5000/api/bus-schedule");
+                const response = await fetch("http://202.13.169.105:5000/api/bus-schedule");
                 const data = await response.json();
                 setBusSchedule(data);
             } catch (error) {
@@ -174,7 +175,7 @@ function App() {
         };
         const fetchSchedule = async () => {
             try {
-                const response = await fetch("http://localhost:5000/api/schedule");
+                const response = await fetch("http://202.13.169.105:5000/api/schedule");
                 const data = await response.json();
 
                 // 現在の日付を取得
@@ -204,7 +205,7 @@ function App() {
         };
         const fetchSeminarSchedule = async () => {
             try {
-                const response = await fetch("http://localhost:5000/api/seminar");
+                const response = await fetch("http://202.13.169.105:5000/api/seminar");
                 const data = await response.json();
 
                 // 現在の日付と時刻を取得

@@ -24,7 +24,7 @@ function RainfallChart() {
 
     useEffect(() => {
         const fetchRainfallData = async () => {
-            const response = await fetch("http://localhost:5000/api/rainfall");
+            const response = await fetch("http://202.13.169.105:5000/api/rainfall");
             const data = await response.json();
 
             // データを加工してランダムな増加量を追加
