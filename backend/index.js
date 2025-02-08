@@ -30,6 +30,7 @@ app.get('/api/rss', async (req, res) => {
 
 app.get("/api/rainfall", async (req, res) => {
     try {
+        console.log("お天気データ取得するよ")
         const response = await axios.get("https://map.yahooapis.jp/weather/V1/place", {
             params: {
                 coordinates: "136.571755,36.484950",
@@ -38,7 +39,7 @@ app.get("/api/rainfall", async (req, res) => {
                 past: 0,
             },
         });
-        console.log("データ取得")
+        console.log("お天気データ取得したよ")
 
         // XMLをJSONに変換
         const jsonResult = await parseStringPromise(response.data);
