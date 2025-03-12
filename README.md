@@ -63,33 +63,8 @@ npm install react@18.3.1 react-dom@18.3.1
 npm install @react-three/fiber@latest @react-three/drei@latest three@latest
 ```
 
-### ディレクトリ構成
-```
-project-root/
-├── backend/
-│   ├── app.py           # Flask/FastAPIアプリケーション
-│   ├── requirements.txt # Pythonパッケージ
-│   └── data/            # 固定データ(JSON)
-├── frontend/
-│   └── ...              # React/Vue.jsプロジェクト
-├── docker-compose.yml    # Docker構成
-└── README.md             # プロジェクト説明
-```
+### ずんだもんの音声案内
+毎日通学したら挨拶と今日の日付，今の時間を教えてくれる．
 
-### やりたいこと
-#### 天気予報
-OpenWeatherMapなどから現在の天気，明日の天気，今日の降水量などをとりたい．
-
-#### slack
-PD-2025の最新の投稿を取得し，表示する．
-
-#### 時刻
-現在の日時を表示し，次のゼミの案内を出す．
-
-#### バスの案内
-次のバスの出発時刻を表示する．
-
-#### ずんだもん
-ずんだもんは欠かせないので，2Dずんだもんを表示する．\\
-また，必要に応じて，ずんだもんにテキストを読ませる．
+バスの時間を通知してくれる．
 
