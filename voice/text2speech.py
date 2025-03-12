@@ -1,7 +1,7 @@
 import requests
 
 def generate_speech(text):
-    url = "http://localhost:5000/voice"
+    url = "http://localhost:4649/voice"
     headers = {"accept":"audio/wav"}
     params = {
         "text":text,
@@ -12,13 +12,11 @@ def generate_speech(text):
     return requests.post(url, headers=headers, params=params)
 
 if __name__ == "__main__":
-    from pydub import AudioSegment
-    from pydub.playback import play
+    import simpleaudio as sa
     import io
 
     while True:
         text = input("音声にしたいテキスト：")
         response = generate_speech(text)
-        audio_segment = AudioSegment.from_file(io.BytesIO(response.content), format="wav")
-        play(audio_segment)
+        sa.WaveObject.from_wave_file(io.BytesIO(response.content)).play().wait_done()
 
