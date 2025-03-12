@@ -13,10 +13,8 @@ html, body {
     grid-template-areas:
       "date-time"
       "weather"
-      "itmedia"
-      "zennllm"
-      "huggingface";
-    grid-template-rows: 1fr 2fr 1.5fr 1.5fr 1.5fr;
+      "news";
+    grid-template-rows: 1fr 2fr 4fr;
     height: 100vh;
     width: 100%;
     max-width: 3440px;
@@ -44,27 +42,36 @@ html, body {
       "time";
     place-items: center;
     grid-template-rows: 1fr 1.5fr;
+    grid-template-columns: 1fr 1.5fr;
     gap: 10px;
     padding: 10px;
-    box-sizing: border-box;
-    /* border: 1px solid #ccc; */
+    place-content: center;
+    /* box-sizing: border-box; */
+    border: 1px solid #ccc;
     border-radius: 5px;
 }
 
 .date-section {
     grid-area: date;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
     font-size: 6rem;
     font-weight: bold;
-    /* border: 1px solid #ccc; */
-    border-radius: 5px;
+    border: 1px solid #ccc;
+    /* border-radius: 5px; */
 }
 
 .time-section {
     grid-area: time;
     font-size: 12rem;
     font-weight: bold;
-    /* border: 1px solid #ccc; */
-    border-radius: 5px;
+    /* display: flex; */
+    /* justify-content: center; */
+    /* align-items: center; */
+    border: 1px solid #ccc;
+    /* border-radius: 5px; */
 }
 
 .weather-container {
@@ -190,8 +197,8 @@ html, body {
     font-size: 5rem;
 }
 
-.itmedia-section {
-    grid-area: itmedia;
+.news-section {
+    grid-area: news;
     display: grid;
     grid-template-rows: 1fr 1fr 1fr;
     box-sizing: border-box;
@@ -201,7 +208,7 @@ html, body {
     padding: 10px;
 }
 
-.itmedia {
+.news {
     display: grid;
     gap: 10px;
     padding: 10px;
@@ -211,7 +218,7 @@ html, body {
     border-radius: 5px;
 }
 
-.itmedia-title {
+.news-title {
     white-space: nowrap;       
     overflow: hidden;          
     text-overflow: ellipsis;   
@@ -221,92 +228,12 @@ html, body {
     display: block;
 }
 
-.itmedia-description {
+.news-description {
     display: -webkit-box;
     -webkit-line-clamp: 2; /* 表示する行数を設定 */
     -webkit-box-orient: vertical;
     overflow: hidden; /* 溢れたテキストを非表示にする */
     text-overflow: ellipsis; /* 省略記号を追加 */
-    color: #666; /* 説明文の文字色 */
-    max-height: 3rem; /* 行の高さに合わせて調整 */
-    line-height: 1rem; /* 行間の高さ */
-    font-size: 1rem; /* テキストのサイズ */
-}
-
-.zennllm-section {
-    grid-area: zennllm;
-    display: grid;
-    grid-template-rows: 1fr 1fr 1fr;
-    box-sizing: border-box;
-    /* border: 1px solid #ccc; */
-    border-radius: 5px;
-    gap: 10px;
-    padding: 10px;
-}
-
-.zennllm {
-    display: grid;
-    gap: 10px;
-    padding: 10px;
-    box-sizing: border-box;
-    /* border: 1px solid #ccc; */
-    background-color: #cce5ee;
-    border-radius: 5px;
-}
-
-.zennllm-title {
-    white-space: nowrap;       
-    overflow: hidden;          
-    text-overflow: ellipsis;   
-    width: 100%;               
-    font-size: 1.5rem;
-    font-weight: bold;
-    display: block;
-}
-
-.zennllm-description {
-    display: -webkit-box;
-    -webkit-line-clamp: 2; /* 表示する行数を設定 */
-    color: #666; /* 説明文の文字色 */
-    max-height: 3rem; /* 行の高さに合わせて調整 */
-    line-height: 1rem; /* 行間の高さ */
-    font-size: 1rem; /* テキストのサイズ */
-}
-
-.huggingface-section {
-    grid-area: huggingface;
-    display: grid;
-    grid-template-rows: 1fr 1fr 1fr;
-    box-sizing: border-box;
-    /* border: 1px solid #ccc; */
-    border-radius: 5px;
-    gap: 10px;
-    padding: 10px;
-}
-
-.huggingface {
-    display: grid;
-    gap: 10px;
-    padding: 10px;
-    box-sizing: border-box;
-    /* border: 1px solid #ccc; */
-    background-color: #eee0c0;
-    border-radius: 5px;
-}
-
-.huggingface-title {
-    white-space: nowrap;       
-    overflow: hidden;          
-    text-overflow: ellipsis;   
-    width: 100%;               
-    font-size: 1.5rem;
-    font-weight: bold;
-    display: block;
-}
-
-.huggingface-description {
-    display: -webkit-box;
-    -webkit-line-clamp: 2; /* 表示する行数を設定 */
     color: #666; /* 説明文の文字色 */
     max-height: 3rem; /* 行の高さに合わせて調整 */
     line-height: 1rem; /* 行間の高さ */
