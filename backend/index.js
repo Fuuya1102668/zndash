@@ -14,18 +14,53 @@ const PORT = 5000;
 app.use(cors());
 
 // ITmedisのニュースのエンドポイント
-app.get('/api/rss', async (req, res) => {
+app.get('/api/itmedia', async (req, res) => {
   try {
-    const feed = await parser.parseURL('https://rss.itmedia.co.jp/rss/2.0/news_bursts.xml');
-    const topArticles = feed.items.slice(0, 3).map(item => ({
-      title: item.title,
-      description: item.contentSnippet || item.content || 'No description available',
-    }));
-    res.json(topArticles);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: 'Failed to fetch RSS feed' });
-  }
+        console.log("itmediaの情報を取得するよ")
+        const feed = await parser.parseURL('https://rss.itmedia.co.jp/rss/2.0/news_bursts.xml');
+        const itmediaArticles = feed.items.slice(0, 3).map(item => ({
+            title: item.title,
+            description: item.contentSnippet || item.content || 'No description available',
+        }));
+        res.json(itmediaArticles);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Failed to fetch RSS feed' });
+    }
+});
+
+// Zenn(llm)のニュースのエンドポイント
+app.get('/api/zennllm', async (req, res) => {
+  try {
+        console.log("zennのllmに関する情報を取得するよ")
+        const feed = await parser.parseURL('https://zenn.dev/topics/llm/feed');
+        const zennllmArticles = feed.items.slice(0, 3).map(item => ({
+            title: item.title,
+            description: item.contentSnippet || item.content || 'No description available',
+        }));
+        res.json(zennllmArticles);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Failed to fetch RSS feed' });
+    }
+});
+
+// noteのhuggingfaceのニュースのエンドポイント
+app.get('/api/huggingface', async (req, res) => {
+  try {
+        console.log("huggingfaceのニュースを取得するよ")
+        const feed = await parser.parseURL('https://note.com/hashtag/huggingface/rss');
+        const openaiArticles = feed.items.slice(0, 3).map(item => ({
+            title: item.title,
+            description: item.contentSnippet || item.content || 'No description available',
+        }));
+        res.json(openaiArticles);
+        console.log("huggingfaceのニュースを取得できたよ")
+    } catch (error) {
+        console.log("huggingfaceのニュースが取得できなかった")
+        console.error(error);
+        res.status(500).json({ message: 'Failed to fetch RSS feed' });
+    }
 });
 
 app.get("/api/rainfall", async (req, res) => {
@@ -118,6 +153,7 @@ app.get("/api/bus-schedule", (req, res) => {
             });
 
             res.json(schedule);
+            console.log("バスの時刻表取得したよ")
         }
     });
 });
