@@ -6,5 +6,9 @@ __pychash__
 __pychash__/*
 __pychash__/**
 
+voice/__pychash__
+voice/__pychash__/*
+voice/__pychash__/**
+
 voice/images/*
 voice/images/**
