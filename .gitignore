@@ -2,13 +2,13 @@ venv
 venv/*
 venv/**
 
-__pychash__
-__pychash__/*
-__pychash__/**
+__pycache__
+__pycache__/*
+__pycache__/**
 
-voice/__pychash__
-voice/__pychash__/*
-voice/__pychash__/**
+voice/__pycache__
+voice/__pycache__/*
+voice/__pycache__/**
 
 voice/images/*
 voice/images/**
