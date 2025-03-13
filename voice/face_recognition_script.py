@@ -87,7 +87,7 @@ while True:
 
             if name == "tkg":
                 if last_played_dates["tkg"] is None or last_played_dates["tkg"] != current_date:
-                    audio_file_path = os.path.join(audio_folder, "tkg.wav")
+                    audio_file_path = os.path.join(audio_folder, "z2t_greeting.wav")
                     if os.path.exists(audio_file_path):
                         wave_obj = sa.WaveObject.from_wave_file(audio_file_path)
                         play_obj = wave_obj.play()
