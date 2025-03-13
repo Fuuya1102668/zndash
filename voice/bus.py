@@ -1,6 +1,9 @@
 import datetime
 import time
 import json
+import simpleaudio as sa
+import io
+import text2speech  # text2speech.pyをインポート
 
 import get_time
 
@@ -20,7 +23,12 @@ def check_time(json_file):
             check_time = event_time - datetime.timedelta(minutes=15)
 
             if check_time.hour == current_hour and check_time.minute == current_minute:
-                print("15分前なのだ")
+                # 再生するテキストを作成
+                text = "あと15分でバスが出発するのだ!"
+                # 音声を生成
+                response = text2speech.generate_speech(text)
+                # 音声の再生
+                sa.WaveObject.from_wave_file(io.BytesIO(response.content)).play().wait_done()
 
         time.sleep(60)
 
