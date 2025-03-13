@@ -12,3 +12,5 @@ voice/__pycache__/**
 
 voice/images/*
 voice/images/**
+voice/audio/*
+voice/audio/**
