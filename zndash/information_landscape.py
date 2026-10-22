@@ -78,7 +78,7 @@ def information_landscape_page():
             with ui.row().classes("w-full items-center gap-2 mt-1"):
                 ui.icon("water_drop").classes("text-sky-700 text-sm")
                 rain_status = ui.label("雨量を取得中").classes("text-[10px] text-slate-500 shrink-0")
-                rainfall_chart = ui.echart(_rainfall_options([], [])).classes("grow h-16 min-w-0")
+                rainfall_chart = ui.echart(_rainfall_options([], [])).classes("grow h-64 min-w-0")
 
         topics = ui.column().classes("w-full gap-3")
         updated_at = ui.label("").classes("w-full text-right text-xs text-gray-400")
@@ -97,7 +97,7 @@ def information_landscape_page():
     async def refresh_rainfall():
         labels, values = await fetch_rainfall_data()
         if labels:
-            rainfall_chart.options = _rainfall_options(labels, values)
+            rainfall_chart.options.update(_rainfall_options(labels, values))
             rainfall_chart.update()
             rain_status.set_text(f"{labels[-1]} 更新 · mm")
         elif not RAINFALL_APP_ID:
