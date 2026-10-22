@@ -49,22 +49,22 @@ def information_landscape_page():
         .landscape-shell { max-width: 820px; }
         .landscape-card { border: 1px solid #d9d4c9; box-shadow: 0 8px 24px #1830440b; }
         .weather-sky { background: #dce8e7; }
-        .story-lead { background: #fffdf7; color: #17263b; border: 1px solid #d9d4c9; border-top: 7px solid var(--topic-accent); }
-        .story-card { background: #fffdf7; border: 1px solid #e0d9cc; border-left: 5px solid var(--topic-accent); }
+        .story-lead { background: #fffdf7; color: #17263b; border: 1px solid #d9d4c9; border-top: 5px solid var(--topic-accent); }
+        .story-card { background: #fffdf7; border: 1px solid #e0d9cc; border-left: 4px solid var(--topic-accent); }
         .story-card .report-track { background: #e3ddd1; }
         .story-lead .report-track { background: #e3ddd1; }
         .story-number { color: var(--topic-accent); }
         .story-tag { color: var(--topic-accent); }
-        .report-track { background: #ffffff30; border-radius: 99px; height: 7px; overflow: hidden; }
+        .report-track { background: #ffffff30; border-radius: 99px; height: 5px; overflow: hidden; }
         .report-fill { background: var(--topic-accent); height: 100%; border-radius: inherit; }
         .keyword-chip { background: #17263b0c; }
     </style>""")
 
-    with ui.column().classes("landscape-shell w-full mx-auto min-h-screen px-4 py-5 gap-4"):
-        with ui.row().classes("w-full items-end justify-between border-b-2 border-slate-800 pb-3"):
+    with ui.column().classes("landscape-shell w-full mx-auto min-h-screen px-3 py-3 gap-3"):
+        with ui.row().classes("w-full items-end justify-between border-b-2 border-slate-800 pb-2"):
             with ui.column().classes("gap-0"):
                 ui.label("ISHIKAWA · DAILY SIGNAL").classes("text-[10px] font-bold tracking-[.24em] text-slate-500")
-                ui.label("今日のネット、ざっくり。").classes("text-2xl sm:text-3xl font-black tracking-tight")
+                ui.label("今日のネット、ざっくり。").classes("text-xl sm:text-2xl font-black tracking-tight")
             clock = ui.label().classes("text-lg font-mono text-gray-600")
             ui.timer(1, lambda: clock.set_text(datetime.now().strftime("%H:%M")))
 
@@ -81,7 +81,7 @@ def information_landscape_page():
                 rain_status = ui.label("雨量を取得中").classes("text-[10px] text-slate-500 shrink-0")
                 rainfall_chart = ui.echart(_rainfall_options([], [])).classes("grow h-48 min-w-0")
 
-        topics = ui.column().classes("w-full gap-3")
+        topics = ui.column().classes("w-full gap-2")
         updated_at = ui.label("").classes("w-full text-right text-xs text-gray-400")
 
     async def refresh_weather():
@@ -120,51 +120,51 @@ def information_landscape_page():
             def render_topic(group, index, lead=False, compact=False):
                 accent = palette[index % len(palette)]
                 card_classes = "story-lead" if lead else "story-card"
-                padding = "p-3 sm:p-4" if compact else "p-4 sm:p-5"
+                padding = "p-2 sm:p-3" if compact else "p-3 sm:p-4"
                 with ui.card().classes(f"{card_classes} w-full rounded-2xl {padding}")\
                     .style(f"--topic-accent: {accent}"):
-                    with ui.row().classes(f"w-full items-start justify-between gap-{2 if compact else 3}"):
-                        with ui.column().classes("min-w-0 grow gap-1"):
+                    with ui.row().classes("w-full items-start justify-between gap-2"):
+                        with ui.column().classes("min-w-0 grow gap-0.5"):
                             eyebrow = "BIG STORY" if lead else f"TOPIC {index + 1:02d}"
                             ui.label(eyebrow).classes(
-                                "story-tag text-[9px] font-black tracking-[.2em]"
+                                "story-tag text-[8px] font-black tracking-[.16em]"
                             )
                             ui.label(group["title"]).classes(
-                                f"{'text-2xl sm:text-3xl' if lead else ('text-base sm:text-lg' if compact else 'text-xl sm:text-2xl')} font-black leading-tight tracking-tight text-slate-900"
+                                f"{'text-xl sm:text-2xl' if lead else ('text-sm sm:text-base' if compact else 'text-lg sm:text-xl')} font-black leading-tight tracking-tight text-slate-900"
                             )
                         with ui.column().classes("items-center shrink-0 gap-0"):
                             ui.label(str(group["count"])).classes(
-                                f"story-number {'text-4xl sm:text-5xl' if lead else ('text-3xl sm:text-4xl' if compact else 'text-4xl')} font-black leading-none"
+                                f"story-number {'text-3xl sm:text-4xl' if lead else ('text-2xl sm:text-3xl' if compact else 'text-3xl')} font-black leading-none"
                             )
                             ui.label("記事").classes("text-[9px] font-bold tracking-widest text-slate-500")
                     ratio = min(1.0, group["count"] / maximum_count)
                     ui.label("最多話題との比").classes(
-                        "mt-2 text-[8px] text-slate-500"
+                        "mt-1 text-[7px] text-slate-500"
                     )
-                    with ui.element("div").classes("report-track w-full mt-1").props(
+                    with ui.element("div").classes("report-track w-full mt-0.5").props(
                         f'title="{group["count"]}件 ÷ 最大{maximum_count}件"'
                     ):
                         ui.element("div").classes("report-fill").style(
                             f"--topic-accent:{accent}; width:{max(8, ratio * 100):.0f}%"
                         )
                     summary_color = "text-slate-700"
-                    summary_size = "text-base sm:text-lg" if lead else ("text-xs sm:text-sm" if compact else "text-sm sm:text-base")
+                    summary_size = "text-sm sm:text-base" if lead else ("text-[11px] sm:text-xs" if compact else "text-xs sm:text-sm")
                     ui.label(group["summary"]).classes(
-                        f"mt-3 {summary_size} leading-snug font-semibold {summary_color}"
+                        f"mt-2 {summary_size} leading-snug font-semibold {summary_color}"
                     )
                     keywords = group.get("keywords", [])[:3]
                     if keywords:
-                        with ui.row().classes("gap-1 mt-3"):
+                        with ui.row().classes("gap-1 mt-2"):
                             for keyword in keywords:
                                 ui.label(keyword).classes(
                                     "keyword-chip rounded-full px-2 py-1 text-[9px] font-bold text-slate-600"
                                 )
                     with ui.expansion("記事の見出しを見る", icon="notes")\
-                        .classes("w-full mt-1 text-xs text-slate-600"):
+                        .classes("w-full mt-0.5 text-[11px] text-slate-600"):
                         for article in group["articles"]:
                             with ui.column().classes("w-full gap-1 border-l border-slate-300/50 pl-3 py-2"):
                                 with ui.row().classes("w-full items-start justify-between gap-2"):
-                                    ui.label(article["title"]).classes("text-xs font-semibold leading-snug")
+                                    ui.label(article["title"]).classes("text-[11px] font-semibold leading-snug")
                                     try:
                                         published = datetime.fromisoformat(article["published_at"]).astimezone()
                                         ui.label(published.strftime("%m/%d %H:%M"))\
@@ -175,13 +175,13 @@ def information_landscape_page():
             if groups:
                 render_topic(groups[0], 0, lead=True)
             if visible_count > 1:
-                with ui.grid(columns=2).classes("w-full gap-3"):
+                with ui.grid(columns=2).classes("w-full gap-2"):
                     for index, group in enumerate(groups[1:visible_count], start=1):
                         render_topic(group, index, compact=True)
             if len(groups) > visible_count:
                 with ui.expansion(f"ほかの話題 {len(groups) - visible_count}件", icon="more_horiz")\
                     .classes("w-full rounded-xl bg-white/70 px-3 py-1 text-sm font-semibold"):
-                    with ui.grid(columns=2).classes("w-full gap-3"):
+                    with ui.grid(columns=2).classes("w-full gap-2"):
                         for index, group in enumerate(groups[visible_count:], start=visible_count):
                             render_topic(group, index, compact=True)
         finished_at = state.get("last_finished_at")
