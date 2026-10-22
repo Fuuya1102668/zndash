@@ -1,16 +1,10 @@
-venv
-venv/*
-venv/**
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+node_modules/
+zndash/data/*.sqlite3
 
-__pycache__
-__pycache__/*
-__pycache__/**
-
-voice/__pycache__
-voice/__pycache__/*
-voice/__pycache__/**
-
+# ローカルに置いた個人用データは Git に登録しない。
 voice/images/*
-voice/images/**
 voice/audio/*
-voice/audio/**
