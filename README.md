@@ -13,7 +13,7 @@ NiceGUI と Python で動く個人用ダッシュボードです。
 
 ~~~sh
 sudo apt update
-sudo apt install -y ca-certificates curl git python3 python3-venv
+sudo apt install -y ca-certificates curl git nano python3 python3-venv
 python3 --version
 ~~~
 
@@ -63,10 +63,12 @@ Gitを使わずにプロジェクトをコピーした場合は、コピー先�
 
 ### 5. アプリを起動
 
-降水強度の表示にYahoo! JAPAN Web APIを使う場合は、アプリケーションIDを設定します。設定を省略した場合、雨量グラフは表示されません。
+降水強度の表示にはYahoo! JAPAN Web APIのアプリケーションIDが必要です。サンプルをコピーし、取得したIDに置き換えてください。`.env` はGitに登録されません。IDを設定しない場合、雨量グラフは表示されません。
 
 ~~~sh
-export YAHOO_WEATHER_APP_ID="Yahoo! JAPAN Web APIのアプリケーションID"
+cp .env.example .env
+nano .env
+# YAHOO_WEATHER_APP_ID= の右側を、取得したアプリケーションIDに置き換えて保存
 python -m zndash
 ~~~
 
@@ -81,12 +83,11 @@ command -v codex
 mkdir -p "$HOME/.config/zndash" "$HOME/.config/systemd/user"
 ~~~
 
-環境ファイルを作り、ZNDASH_CODEX_CLI を command -v codex の出力に置き換えます。雨量表示が不要な場合は、YAHOO_WEATHER_APP_ID の行を省略できます。
+環境ファイルを作り、ZNDASH_CODEX_CLI を command -v codex の出力に置き換えます。Yahoo! JAPAN Web APIのIDはプロジェクト直下の `.env` から読み込まれるため、ここには記載しません。
 
 ~~~sh
 cat > "$HOME/.config/zndash/environment" <<'EOF'
 ZNDASH_CODEX_CLI=/home/ユーザー名/.local/bin/codex
-YAHOO_WEATHER_APP_ID=Yahoo! JAPAN Web APIのアプリケーションID
 EOF
 chmod 600 "$HOME/.config/zndash/environment"
 ~~~
