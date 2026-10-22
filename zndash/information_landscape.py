@@ -97,7 +97,7 @@ def information_landscape_page():
     async def refresh_rainfall():
         labels, values = await fetch_rainfall_data()
         if labels:
-            rainfall_chart.options = _rainfall_options(labels, values)
+            rainfall_chart.options.update(_rainfall_options(labels, values))
             rainfall_chart.update()
             rain_status.set_text(f"{labels[-1]} 更新 · mm")
         elif not RAINFALL_APP_ID:
