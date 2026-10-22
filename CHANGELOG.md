@@ -14,6 +14,7 @@
 
 ### Changed
 
+- 縦長掲示板の雨量グラフを高さ64pxから256pxへ拡大。
 - 雨量グラフの更新時にNiceGUIの読み取り専用 `options` へ代入していた箇所を、options辞書の更新に修正。
 - Yahoo! JAPAN Web APIのアプリケーションIDをプロジェクト直下の `.env` から読み込み、`.env.example` とGit除外設定を追加。
 - README にミニPC向けの Codex CLI インストール、認証、Python 環境構築、systemd ユーザーサービス設定を追加。
