@@ -51,8 +51,8 @@ codex login --device-auth
 
 ~~~sh
 mkdir -p "$HOME/src"
-git clone REPOSITORY_URL "$HOME/src/rabbitfish"
-cd "$HOME/src/rabbitfish"
+git clone REPOSITORY_URL "$HOME/src/zndash"
+cd "$HOME/src/zndash"
 python3 -m venv .venv
 source .venv/bin/activate
 python -m pip install --upgrade pip
@@ -103,9 +103,9 @@ After=network-online.target
 
 [Service]
 Type=simple
-WorkingDirectory=%h/src/rabbitfish
+WorkingDirectory=%h/src/zndash
 EnvironmentFile=%h/.config/zndash/environment
-ExecStart=%h/src/rabbitfish/.venv/bin/python -m zndash
+ExecStart=%h/src/zndash/.venv/bin/python -m zndash
 Restart=on-failure
 RestartSec=5
 

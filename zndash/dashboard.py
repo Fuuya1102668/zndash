@@ -58,12 +58,12 @@ def _rainfall_card():
             "tooltip": {"trigger": "axis"},
             "grid": {"left": "3%", "right": "4%", "bottom": "3%", "containLabel": True},
             "xAxis": {"type": "category", "data": [], "axisTick": {"alignWithLabel": True}},
-            "yAxis": {"type": "value", "name": "mm", "minInterval": 0.1, "max": 10},
+            "yAxis": {"type": "value", "name": "mm/h", "minInterval": 0.1, "max": 5},
             "series": [{
                 "name": "降水量", "type": "bar", "data": [],
                 "itemStyle": {"color": "#5898d4"}, "barWidth": "60%",
             }],
-        }).classes("w-full h-40")
+        }).classes("w-full h-48")
 
     async def update():
         labels, values = await fetch_rainfall_data()
