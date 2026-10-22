@@ -31,6 +31,7 @@ def _rainfall_options(labels, values):
             "axisLabel": {"color": "#748092", "fontSize": 10},
             "splitLine": {"lineStyle": {"color": "#e8ebf0"}},
             "minInterval": 0.1,
+            "max": 5,
         },
         "series": [{
             "type": "bar",
@@ -78,7 +79,7 @@ def information_landscape_page():
             with ui.row().classes("w-full items-center gap-2 mt-1"):
                 ui.icon("water_drop").classes("text-sky-700 text-sm")
                 rain_status = ui.label("雨量を取得中").classes("text-[10px] text-slate-500 shrink-0")
-                rainfall_chart = ui.echart(_rainfall_options([], [])).classes("grow h-64 min-w-0")
+                rainfall_chart = ui.echart(_rainfall_options([], [])).classes("grow h-48 min-w-0")
 
         topics = ui.column().classes("w-full gap-3")
         updated_at = ui.label("").classes("w-full text-right text-xs text-gray-400")
